@@ -190,7 +190,42 @@
           </div>
         </div>
       </div>
-      <div class="add-new-task"></div>
+      <div class="add-task-btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="ionicon"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="32"
+            d="M256 112v288M400 256H112"
+          />
+        </svg>
+      </div>
+
+      <div class="black-backdrop"></div>
+      <div class="add-task">
+        <div class="add-task-backdrop"></div>
+        <h1 class="head">Add Task</h1>
+        <div class="input-group">
+          <label for="task-input">Task</label>
+          <input type="text" id="task-input" required />
+        </div>
+        <div class="input-group">
+          <label for="category-select">Category</label>
+          <select type="text" id="category-select">
+            <option value="personal">Personal</option>
+          </select>
+        </div>
+        <div class="btns">
+          <button class="cancel-btn">Cancel</button>
+          <button class="add-btn">Add</button>
+        </div>
+      </div>
     </div>
     <script src="../JavaScript/app.js"></script>
     <script

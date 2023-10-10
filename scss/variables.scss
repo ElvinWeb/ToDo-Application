@@ -1,0 +1,25 @@
+//----------------Root-colors
+:root {
+	--black-color: #2e2e2e;
+	--light-grayish-red: #e6dada;
+	--white-color: #fff;
+	--light-gray-1: hsl(0, 0%, 96%);
+	--red-color: #c51605;
+	--bg-gradient-color-1: #b92b27;
+	--bg-gradient-color-2: #1565c0;
+	--dark-gray: #666;
+}
+//---------------Colors-Variables
+$color_1: var(--black-color);
+$color_2: var(--white-color);
+$color_3: var(--red-color);
+$color_4: var(--Dark-gray);
+$font-family_1: "Inter", sans-serif;
+$background-color_1: var(--Light-Gray-1);
+$background-color_2: var(--white-color);
+$background-color_3: var(--black-color);
+$background-color_4: rgba(0, 0, 0, 0.051);
+$background-color_5: rgba(0, 0, 0, 0.1);
+$background-color_6: var(--bg-gradient-color-2);
+$background-color_7: var(--bg-gradient-color-1);
+$background-color_8: #00000023;

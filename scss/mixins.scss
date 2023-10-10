@@ -1,0 +1,16 @@
+@mixin flex-box($justify) {
+    display: flex;
+    align-items: center;
+    justify-content: $justify;
+}
+
+@mixin position-absolute($left) {
+    position: absolute;
+    top: 0;
+    left: $left;
+}
+
+@mixin hidden($visible, $opacity) {
+    opacity: $opacity;
+    visibility: $visible;
+}

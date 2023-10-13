@@ -1,7 +1,14 @@
-@mixin flex-box($justify) {
+@mixin flex-box($align, $justify) {
     display: flex;
-    align-items: center;
+    align-items: $align;
     justify-content: $justify;
+}
+
+@mixin flex-direction($justify, $align, $flex-direction, $direction) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    #{$flex-direction}: $direction;
 }
 
 @mixin position-absolute($left) {
@@ -13,4 +20,16 @@
 @mixin hidden($visible, $opacity) {
     opacity: $opacity;
     visibility: $visible;
+}
+
+@mixin object-fit($fit) {
+    object-fit: $fit;
+    width: 100%;
+    height: 100%;
+}
+
+@mixin transform($type, $firstVal, $secondVal) {
+    .#{$type}-screen {
+        transform: translate($firstVal, $secondVal);
+    }
 }

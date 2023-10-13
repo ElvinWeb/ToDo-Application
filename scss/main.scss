@@ -1,3 +1,4 @@
+;
 @import "../scss/mixins.scss";
 @import "../scss/variables.scss";
 /* ------------Google-Fonts----------- */
@@ -18,23 +19,23 @@
 }
 
 body {
-    min-height: 100vh;
+    min-height: $height-size_1;
     color: $color_1;
     background-color: $background-color_1;
-    @include flex-box(center);
+    @include flex-box(center, center);
 }
 
 .wrapper {
     position: relative;
     display: flex;
-    height: 100vh;
-    width: 100%;
+    height: $height-size_1;
+    width: $width-size_1;
     overflow: hidden;
     padding: 30px 0;
 
-    .screen-backdrop {
-        width: 135%;
-        height: 20rem;
+    .backdrop-screen {
+        width: $width-size_1 + 35;
+        height: $height-size_2;
         background: $background-color_7;
         background: linear-gradient(to right, $background-color_6, $background-color_7);
         border-radius: 0 0 50% 50%;
@@ -46,59 +47,59 @@ body {
 
     .screen {
         flex: 1;
-        min-width: 100%;
+        min-width: $width-size_1;
         transition: all 0.3s;
 
         .head-wrapper {
             padding: 0px 30px;
 
             .head-top {
-                @include flex-box(space-between);
+                @include flex-box(center, space-between);
 
                 .menu-btn {
-                    width: 2rem;
+                    width: $width-size_2 - 3;
                     cursor: pointer;
                     color: $color_2;
                 }
+
                 .top-logo {
                     width: 35px;
                     height: 35px;
-                
+
                     img {
-                        object-fit: cover;
-                        width: 100%;
-                        height: 100%;
+                        @include object-fit(cover);
                     }
                 }
             }
+
             .welcome {
-                @include flex-box(space-between);
+                @include flex-box(center, space-between);
                 margin-top: 30px;
-            
+
                 .content {
                     color: $color_2;
                 }
-            
+
                 h1 {
                     font-size: 1.5rem;
                 }
-            
+
                 p {
                     font-weight: 500;
                 }
-            
+
                 .img {
                     position: relative;
-            
+
                     img {
-                        width: 5rem;
+                        width: $width-size_2;
                     }
-            
+
                     .backdrop {
                         @include position-absolute(50%);
                         transform: translateX(-50%);
-                        width: 3.8rem;
-                        height: 4rem;
+                        width: $width-size_2 - 1.2;
+                        height: $height-size_2 - 16;
                         border-radius: 50%;
                         background-color: $background-color_2;
                         z-index: -1;
@@ -117,9 +118,12 @@ body {
             transform: translateX(-100%);
         }
 
-        .screen-backdrop {
+        .backdrop-screen {
             transform: translate(-50%, -60%);
         }
+        // @each $types, $transform in $translates{
+        //     @include transform($types,)
+        // }
     }
 }
 
@@ -135,9 +139,7 @@ body {
 
     .categories {
         padding-top: 1rem;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
+        @include flex-direction(space-between, initial, flex-direction, column);
         gap: 1rem;
 
         .category {
@@ -145,16 +147,16 @@ body {
             border-radius: 0.5rem;
             padding: 1.5rem 1.5rem;
             cursor: pointer;
-            @include flex-box(space-between);
+            @include flex-box(center, space-between);
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-            transition: all 0.3s ease-in-out;
+            transition: all 0.3s;
 
             .left {
-                @include flex-box(space-between);
+                @include flex-box(center, space-between);
                 gap: 1.5rem;
 
                 img {
-                    width: 3rem;
+                    width: $width-size_2 - 2;
                 }
             }
 
@@ -163,7 +165,7 @@ body {
                 transition: all 0.3s ease;
 
                 .toggle-btn {
-                    width: 2rem;
+                    width: $width-size_2 - 3;
                     cursor: pointer;
                     opacity: 0.6;
                 }
@@ -171,7 +173,7 @@ body {
                 &:hover {
                     .options {
                         @include hidden(visible, 1);
-                        // visibility: visible;
+
                     }
                 }
             }
@@ -198,13 +200,23 @@ body {
 
 .category-screen {
     .head-wrapper {
-        @include flex-box(space-between);
+        @include flex-box(center, space-between);
 
-        svg {
+        .back-btn {
             cursor: pointer;
-            width: 2rem;
+            width: $width-size_2 - 3;
             color: $color_2;
         }
+
+        .top-logo {
+            width: 35px;
+            height: 35px;
+
+            img {
+                @include object-fit(cover);
+            }
+        }
+
     }
 }
 
@@ -216,7 +228,7 @@ body {
     gap: 1rem;
 
     img {
-        width: 4rem;
+        width: $width-size_2 - 1;
     }
 
     .details {
@@ -236,17 +248,17 @@ body {
 
 .tasks {
     padding-top: 1rem;
-    display: flex;
-    flex-direction: column;
+    @include flex-direction(center, 0, flex-direction, column);
     gap: 1rem;
 }
 
 .task-wrapper {
-    @include flex-box(space-between);
+    @include flex-box(center, space-between);
+
 
     .delete {
-        min-width: 2rem;
-        height: 2rem;
+        min-width: $width-size_2 - 3;
+        height: $height-size_2 - 18;
         padding: 0.5rem;
         border-radius: 50%;
         color: $color_1;
@@ -269,9 +281,8 @@ body {
 }
 
 .task {
-    display: flex;
+    @include flex-box(center, center);
     gap: 0.5rem;
-    align-items: center;
     font-size: 0.8rem;
     font-weight: 500;
     width: max-content;
@@ -300,14 +311,14 @@ body {
     }
 
     .checkmark {
-        width: 1rem;
-        height: 1rem;
+        width: $width-size_2 - 4;
+        height: $height-size_2 - 19;
         border-radius: 3px;
         border: 1px solid var(--black-color);
-        // @include flex;
+        @include flex-box(center, center);
 
         svg {
-            width: 1rem;
+            width: $width-size_2 - 4;
             color: $color_1;
             @include hidden(hidden, 0);
             transition: all 0.2s ease;
@@ -332,7 +343,7 @@ body {
     border-radius: 50%;
     background: var(--bg-gradient-color-1);
     cursor: pointer;
-    @include flex-box(center);
+    @include flex-box(center, center);
     transition: all 0.3s;
 
     &:hover {
@@ -343,19 +354,20 @@ body {
         width: 2.3rem;
         color: $color_2;
     }
-}
 
-.add-task-btn.active {
-    z-index: 1;
-    bottom: 20rem;
-    transform: rotate(45deg);
+    &.active {
+        transform: rotate(45deg);
+        bottom: 20rem;
+        z-index: 1;
+    }
 }
 
 .add-task {
     position: absolute;
     bottom: -100%;
     left: 0;
-    width: 100%;
+
+    width: $width-size_1;
     padding: 20px 30px;
     transition: all 0.3s;
 
@@ -375,7 +387,7 @@ body {
 
     input {
         display: block;
-        width: 100%;
+        width: $width-size_1;
         border: 1px solid #ccc;
         border-radius: 5px;
         padding: 10px;
@@ -384,7 +396,7 @@ body {
 
     label {
         display: block;
-        width: 100%;
+        width: $width-size_1;
         width: max-content;
         padding: 0 5px;
         margin-top: 5px;
@@ -394,7 +406,7 @@ body {
     }
 
     select {
-        width: 100%;
+        width: $width-size_1;
         border: 1px solid #ccc;
         border-radius: 5px;
         padding: 10px;
@@ -403,7 +415,7 @@ body {
 }
 
 .btns {
-    @include flex-box(flex-end);
+    @include flex-box(center, flex-end);
     gap: 1rem;
 
     button {
@@ -414,40 +426,40 @@ body {
         font-weight: 600;
         cursor: pointer;
         z-index: 1;
+
+        @each $name,
+        $bg-color in $bg-colors {
+            &.#{$name}-btn {
+                background-color: $bg-color;
+                color: $color_2;
+            }
+        }
     }
 
-    button.cancel-btn {
-        background-color: $background-color_6;
-        color: $color_2;
-    }
-
-    button.add-btn {
-        background-color: $background-color_7;
-        color: $color_2;
-    }
 }
 
 .add-task-backdrop {
     @include position-absolute(50%);
     transform: translateX(-50%);
-    width: 135%;
-    height: 20rem;
+    width: $width-size_1 + 35;
+    height: $height-size_2;
     border-radius: 50% 50% 0 0;
     background-color: $background-color_2;
 }
 
 .black-backdrop {
     @include position-absolute(0);
-    width: 100%;
-    height: 100%;
+    width: $width-size_1;
+    height: $height-size_3;
     backdrop-filter: blur(5px);
     background-color: $background-color_8;
-    @include hidden(hidden, 0)
+    @include hidden(hidden, 0);
+
+    &.active {
+        @include hidden(visible, 1)
+    }
 }
 
-.black-backdrop.active {
-    @include hidden(visible, 1)
-}
 
 @media (min-width: 768px) {
     .wrapper {

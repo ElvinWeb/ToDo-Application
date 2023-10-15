@@ -44,7 +44,7 @@ body {
 }
 .wrapper .backdrop-screen {
   width: 135%;
-  height: 20rem;
+  height: 25rem;
   background: var(--bg-gradient-color-1);
   background: linear-gradient(to right, var(--bg-gradient-color-2), var(--bg-gradient-color-1));
   border-radius: 0 0 50% 50%;
@@ -97,6 +97,7 @@ body {
 }
 .wrapper .screen .head-wrapper .welcome p {
   font-weight: 500;
+  line-height: 20px;
 }
 .wrapper .screen .head-wrapper .welcome .img {
   position: relative;
@@ -439,8 +440,8 @@ body {
 
 @media (min-width: 768px) {
   .wrapper {
-    height: 47rem;
-    width: 25rem;
+    height: 48rem;
+    width: 27rem;
     border-radius: 40px;
     border: 10px solid var(--black-color);
   }

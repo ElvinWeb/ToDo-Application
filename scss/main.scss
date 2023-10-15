@@ -35,7 +35,7 @@ body {
 
     .backdrop-screen {
         width: $width-size_1 + 35;
-        height: $height-size_2;
+        height: $height-size_2 + 5;
         background: $background-color_7;
         background: linear-gradient(to right, $background-color_6, $background-color_7);
         border-radius: 0 0 50% 50%;
@@ -86,6 +86,7 @@ body {
 
                 p {
                     font-weight: 500;
+                    line-height: 20px;
                 }
 
                 .img {
@@ -126,9 +127,6 @@ body {
         // }
     }
 }
-
-
-
 
 .categories-wrapper {
     margin-top: 1rem;
@@ -463,8 +461,8 @@ body {
 
 @media (min-width: 768px) {
     .wrapper {
-        height: 47rem;
-        width: 25rem;
+        height: 48rem;
+        width: 27rem;
         border-radius: 40px;
         border: 10px solid var(--black-color);
     }

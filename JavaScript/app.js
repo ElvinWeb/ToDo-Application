@@ -5,10 +5,12 @@ const addTaskBtn = document.querySelector(".add-task-btn");
 const addTaskForm = document.querySelector(".add-task");
 const blackBackDrop = document.querySelector(".black-backdrop");
 
+//switch between the home-screen and category-screen sections
 const toggleScreen = () => {
   wrapper.classList.toggle("show-category");
 };
 
+//toggle the backDrop and addTaskForm
 const toggleAddTaskForm = () => {
   addTaskForm.classList.toggle("active");
   blackBackDrop.classList.toggle("active");
@@ -20,7 +22,7 @@ blackBackDrop.addEventListener("click", toggleAddTaskForm);
 backBtn.addEventListener("click", toggleScreen);
 menuBtn.addEventListener("click", toggleScreen);
 
-//adding the category and tasks
+//categories and tasks array for adding the into the category and task list
 let categories = [
   {
     title: "Personal",
@@ -217,6 +219,7 @@ const categoryTitle = document.querySelector(".category-title");
 const totalCategoryTasks = document.querySelector(".category-tasks");
 const categoryImg = document.getElementById("category-img");
 const totalTasks = document.querySelector(".totalTasks");
+const tasksContainer = document.querySelector(".tasks");
 
 //calculate the total category tasks
 const calculateTotal = () => {
@@ -225,12 +228,12 @@ const calculateTotal = () => {
       task.category.toLowerCase() === selectedCategory.title.toLowerCase()
   );
   totalCategoryTasks.textContent = `${categoryTasks.length} Tasks`;
+  totalTasks.textContent = tasks.length;
 };
 
 //rendering the category cards
 const renderCategories = () => {
   categoriesContainer.innerHTML = "";
-  totalTasks.textContent = tasks.length;
 
   categories.forEach((category) => {
     const categoryTasks = tasks.filter(
@@ -277,5 +280,88 @@ const renderCategories = () => {
     categoriesContainer.appendChild(div);
   });
 };
+//rendering the each category tasks
+const renderTasks = () => {
+  tasksContainer.innerHTML = "";
 
+  const categoryTasks = tasks.filter(
+    (task) =>
+      task.category.toLowerCase() === selectedCategory.title.toLowerCase()
+  );
+  if (categoryTasks.length === 0) {
+    tasksContainer.innerHTML = `
+       <p class="no-task">No tasks for this category</p>  
+    `;
+  } else {
+    categoryTasks.forEach((task) => {
+      const div = document.createElement("div");
+      div.classList.add("task-wrapper");
+      const label = document.createElement("label");
+      label.classList.add("task");
+      label.setAttribute("for", task.id);
+      const checkBox = document.createElement("input");
+      checkBox.type = "checkbox";
+      checkBox.id = task.id;
+      checkBox.checked = task.completed;
+      div.innerHTML = `
+        <div class="delete">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="ionicon"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M112 112l20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="32"
+            />
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-miterlimit="10"
+              stroke-width="32"
+              d="M80 112h352"
+            />
+            <path
+              d="M192 112V72h0a23.93 23.93 0 0124-24h80a23.93 23.93 0 0124 24h0v40M256 176v224M184 176l8 224M328 176l-8 224"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="32"
+            />
+          </svg>
+      </div>
+      `;
+
+      label.innerHTML = `
+        <span class="checkmark">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="ionicon"
+            viewBox="0 0 512 512">
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="32"
+              d="M416 128L192 384l-96-96"
+            />
+          </svg>
+        </span>
+        <p>${task.task}</p>
+      `;
+      label.prepend(checkBox);
+      div.prepend(label);
+      tasksContainer.appendChild(div);
+    });
+  }
+};
+
+calculateTotal();
+renderTasks();
 renderCategories();

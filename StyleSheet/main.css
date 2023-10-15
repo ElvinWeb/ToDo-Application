@@ -223,14 +223,6 @@ body {
   opacity: 0.6;
 }
 
-.tasks-wrapper {
-  padding: 0 30px;
-  margin-top: 1rem;
-  height: calc(100% - 12rem);
-  padding-bottom: 20px;
-  overflow: auto;
-}
-
 .tasks {
   padding-top: 1rem;
   display: flex;
@@ -238,6 +230,20 @@ body {
   justify-content: center;
   flex-direction: column;
   gap: 1rem;
+}
+.tasks .no-task {
+  margin-top: 5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  opacity: 0.6;
+}
+
+.tasks-wrapper {
+  padding: 0 30px;
+  margin-top: 1rem;
+  height: calc(100% - 12rem);
+  padding-bottom: 20px;
+  overflow: auto;
 }
 
 .task-wrapper {

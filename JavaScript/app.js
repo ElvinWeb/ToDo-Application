@@ -249,6 +249,7 @@ const renderCategories = () => {
       categoryImg.src = `../Images/${category.img}`;
       categoryTitle.textContent = category.title;
       calculateTotal();
+      renderTasks();
     });
     div.innerHTML = ` 
     <div class="left">
@@ -286,7 +287,7 @@ const renderTasks = () => {
 
   const categoryTasks = tasks.filter(
     (task) =>
-      task.category.toLowerCase() === selectedCategory.title.toLowerCase()
+      task.category.toLowerCase() == selectedCategory.title.toLowerCase()
   );
   if (categoryTasks.length === 0) {
     tasksContainer.innerHTML = `
@@ -303,6 +304,13 @@ const renderTasks = () => {
       checkBox.type = "checkbox";
       checkBox.id = task.id;
       checkBox.checked = task.completed;
+
+      checkBox.addEventListener("change", () => {
+        const index = tasks.findIndex((t) => t.id === task.id);
+
+        tasks[index].completed = !tasks[index].completed;
+        saveLocal();
+      });
       div.innerHTML = `
         <div class="delete">
           <svg
@@ -358,10 +366,33 @@ const renderTasks = () => {
       label.prepend(checkBox);
       div.prepend(label);
       tasksContainer.appendChild(div);
+
+      const deleteBtn = document.querySelector(".delete");
+      deleteBtn.addEventListener("click", () => {
+        const index = tasks.findIndex((t) => t.id === task.id);
+
+        tasks.splice(index, 1);
+        saveLocal();
+        renderTasks();
+      });
     });
+    renderCategories();
+    calculateTotal();
+  }
+};
+const saveLocal = () => {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+};
+saveLocal();
+const getLocal = () => {
+  const localTasks = JSON.parse(localStorage.getItem("tasks"));
+
+  if (localTasks) {
+    tasks = localTasks;
   }
 };
 
+getLocal();
 calculateTotal();
 renderTasks();
 renderCategories();

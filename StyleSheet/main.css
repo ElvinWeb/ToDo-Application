@@ -211,7 +211,7 @@ body {
 
 .category-details {
   padding: 0 30px;
-  margin-top: 7rem;
+  margin-top: 8rem;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -446,8 +446,8 @@ body {
 
 @media (min-width: 768px) {
   .wrapper {
-    height: 48rem;
-    width: 27rem;
+    height: 50rem;
+    width: 25rem;
     border-radius: 40px;
     border: 10px solid var(--black-color);
   }

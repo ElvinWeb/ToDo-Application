@@ -307,7 +307,7 @@ const renderTasks = () => {
 
       checkBox.addEventListener("change", () => {
         const index = tasks.findIndex((t) => t.id === task.id);
-
+        console.log(index);
         tasks[index].completed = !tasks[index].completed;
         saveLocal();
       });
@@ -367,11 +367,11 @@ const renderTasks = () => {
       div.prepend(label);
       tasksContainer.appendChild(div);
 
-      const deleteBtn = document.querySelector(".delete");
+      const deleteBtn = div.querySelector(".delete");
       deleteBtn.addEventListener("click", () => {
         const index = tasks.findIndex((t) => t.id === task.id);
-
         tasks.splice(index, 1);
+
         saveLocal();
         renderTasks();
       });
@@ -383,7 +383,7 @@ const renderTasks = () => {
 const saveLocal = () => {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
-saveLocal();
+
 const getLocal = () => {
   const localTasks = JSON.parse(localStorage.getItem("tasks"));
 
@@ -391,8 +391,42 @@ const getLocal = () => {
     tasks = localTasks;
   }
 };
+const categorySelect = document.querySelector("#category-select");
+const cancelBtn = document.querySelector(".cancel-btn");
+const addBtn = document.querySelector(".add-btn");
+const taskInput = document.querySelector(".input-field");
+
+cancelBtn.addEventListener("click", toggleAddTaskForm);
+
+addBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const task = taskInput.value;
+  const category = categorySelect.value;
+
+  if (task === "") {
+    alert("Please enter the task");
+  } else {
+    const newTask = {
+      id: tasks.length + 1,
+      task,
+      category,
+      completed: false,
+    };
+
+    tasks.push(newTask);
+    taskInput.value = " ";
+    saveLocal();
+    toggleAddTaskForm();
+    renderTasks();
+  }
+});
 
 getLocal();
-calculateTotal();
 renderTasks();
-renderCategories();
+
+categories.forEach((category) => {
+  const option = document.createElement("option");
+  option.value = category.title.toLowerCase();
+  option.textContent = category.title;
+  categorySelect.appendChild(option);
+});

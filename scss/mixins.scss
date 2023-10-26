@@ -33,3 +33,25 @@
         transform: translate($firstVal, $secondVal);
     }
 }
+
+@mixin head-top($btn-name) {
+    .head-top {
+        @include flex-box(center, space-between);
+
+        .#{$btn-name}-btn {
+            cursor: pointer;
+            width: $width-size_2 - 3;
+            color: $color_2;
+        }
+
+        .top-logo {
+            width: 35px;
+            height: 35px;
+
+            img {
+                @include object-fit(cover);
+            }
+        }
+
+    }
+}

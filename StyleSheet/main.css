@@ -37,9 +37,9 @@ body {
 .wrapper {
   position: relative;
   display: flex;
+  overflow: hidden;
   height: 100vh;
   width: 100%;
-  overflow: hidden;
   padding: 30px 0;
 }
 .wrapper .backdrop-screen {
@@ -69,8 +69,8 @@ body {
   justify-content: space-between;
 }
 .wrapper .screen .head-wrapper .head-top .menu-btn {
-  width: 2rem;
   cursor: pointer;
+  width: 2rem;
   color: var(--white-color);
 }
 .wrapper .screen .head-wrapper .head-top .top-logo {
@@ -92,10 +92,10 @@ body {
 .wrapper .screen .head-wrapper .welcome .content {
   color: var(--white-color);
 }
-.wrapper .screen .head-wrapper .welcome h1 {
+.wrapper .screen .head-wrapper .welcome .content h1 {
   font-size: 1.5rem;
 }
-.wrapper .screen .head-wrapper .welcome p {
+.wrapper .screen .head-wrapper .welcome .content p {
   font-weight: 500;
   line-height: 20px;
 }
@@ -116,9 +116,7 @@ body {
   background-color: var(--white-color);
   z-index: -1;
 }
-.wrapper.show-category .home-screen {
-  transform: translateX(-100%);
-}
+.wrapper.show-category .home-screen,
 .wrapper.show-category .category-screen {
   transform: translateX(-100%);
 }
@@ -188,53 +186,37 @@ body {
   opacity: 0.6;
 }
 
-.category-screen .head-wrapper {
+.category-screen .head-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.category-screen .head-wrapper .back-btn {
+.category-screen .head-top .back-btn {
   cursor: pointer;
   width: 2rem;
   color: var(--white-color);
 }
-.category-screen .head-wrapper .top-logo {
+.category-screen .head-top .top-logo {
   width: 35px;
   height: 35px;
 }
-.category-screen .head-wrapper .top-logo img {
+.category-screen .head-top .top-logo img {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
   height: 100%;
 }
-
-.category-details {
+.category-screen .category-details {
   padding: 0 30px;
   margin-top: 8rem;
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-.category-details img {
+.category-screen .category-details img {
   width: 4rem;
 }
-.category-details .details p {
-  opacity: 0.6;
-}
-
-.tasks {
-  padding-top: 1rem;
-  display: flex;
-  align-items: 0;
-  justify-content: center;
-  flex-direction: column;
-  gap: 1rem;
-}
-.tasks .no-task {
-  margin-top: 5rem;
-  text-align: center;
-  font-size: 1.5rem;
+.category-screen .category-details .details p {
   opacity: 0.6;
 }
 
@@ -245,13 +227,29 @@ body {
   padding-bottom: 20px;
   overflow: auto;
 }
-
-.task-wrapper {
+.tasks-wrapper .tasks {
+  padding-top: 1rem;
+  display: flex;
+  align-items: 0;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+.tasks-wrapper .tasks .no-task {
+  margin-top: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5rem;
+  opacity: 0.6;
+}
+.tasks-wrapper .tasks .task-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.task-wrapper .delete {
+.tasks-wrapper .tasks .task-wrapper .delete {
   min-width: 2rem;
   height: 2rem;
   padding: 0.5rem;
@@ -263,16 +261,15 @@ body {
   visibility: hidden;
   transition: all 0.3s;
 }
-.task-wrapper .delete:hover {
+.tasks-wrapper .tasks .task-wrapper .delete:hover {
   color: var(--red-color);
   background-color: rgba(0, 0, 0, 0.1);
 }
-.task-wrapper:hover .delete {
+.tasks-wrapper .tasks .task-wrapper:hover .delete {
   opacity: 1;
   visibility: visible;
 }
-
-.task {
+.tasks-wrapper .tasks .task-wrapper .task {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -283,21 +280,22 @@ body {
   width: max-content;
   cursor: pointer;
 }
-.task input {
+.tasks-wrapper .tasks .task-wrapper .task input {
   display: none;
 }
-.task input:checked ~ .checkmark {
+.tasks-wrapper .tasks .task-wrapper .task input:checked ~ .checkmark {
   background-color: var(--black-color);
 }
-.task input:checked ~ .checkmark svg {
+.tasks-wrapper .tasks .task-wrapper .task input:checked ~ .checkmark svg {
   color: var(--white-color);
   opacity: 1;
+  visibility: visible;
 }
-.task input:checked ~ p {
+.tasks-wrapper .tasks .task-wrapper .task input:checked ~ p {
   text-decoration: line-through;
   opacity: 0.6;
 }
-.task .checkmark {
+.tasks-wrapper .tasks .task-wrapper .task .checkmark {
   width: 1rem;
   height: 1rem;
   border-radius: 3px;
@@ -306,14 +304,14 @@ body {
   align-items: center;
   justify-content: center;
 }
-.task .checkmark svg {
+.tasks-wrapper .tasks .task-wrapper .task .checkmark svg {
   width: 1rem;
   color: var(--black-color);
   opacity: 0;
   visibility: hidden;
   transition: all 0.2s ease;
 }
-.task:hover .checkmark svg {
+.tasks-wrapper .tasks .task-wrapper .task:hover .checkmark svg {
   opacity: 1;
   visibility: visible;
 }
@@ -350,15 +348,17 @@ body {
   bottom: -100%;
   left: 0;
   width: 100%;
-  padding: 20px 30px;
+  padding: 50px 30px;
   transition: all 0.3s;
 }
 .add-task.active {
-  bottom: 0;
+  bottom: -30px;
 }
 .add-task .head {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  position: relative;
+  z-index: 10;
 }
 
 .input-group {

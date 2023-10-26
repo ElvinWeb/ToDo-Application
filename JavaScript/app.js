@@ -400,6 +400,7 @@ cancelBtn.addEventListener("click", toggleAddTaskForm);
 
 addBtn.addEventListener("click", (e) => {
   e.preventDefault();
+
   const task = taskInput.value;
   const category = categorySelect.value;
 

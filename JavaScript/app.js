@@ -5,22 +5,17 @@ const addTaskBtn = document.querySelector(".add-task-btn");
 const addTaskForm = document.querySelector(".add-task");
 const blackBackDrop = document.querySelector(".black-backdrop");
 
-//switch between the home-screen and category-screen sections
-const toggleScreen = () => {
-  wrapper.classList.toggle("show-category");
-};
+const categorySelect = document.querySelector("#category-select");
+const cancelBtn = document.querySelector(".cancel-btn");
+const addBtn = document.querySelector(".add-btn");
+const taskInput = document.querySelector(".input-field");
 
-//toggle the backDrop and addTaskForm
-const toggleAddTaskForm = () => {
-  addTaskForm.classList.toggle("active");
-  blackBackDrop.classList.toggle("active");
-  addTaskBtn.classList.toggle("active");
-};
-
-addTaskBtn.addEventListener("click", toggleAddTaskForm);
-blackBackDrop.addEventListener("click", toggleAddTaskForm);
-backBtn.addEventListener("click", toggleScreen);
-menuBtn.addEventListener("click", toggleScreen);
+const categoriesContainer = document.querySelector(".categories");
+const categoryTitle = document.querySelector(".category-title");
+const totalCategoryTasks = document.querySelector(".category-tasks");
+const categoryImg = document.getElementById("category-img");
+const totalTasks = document.querySelector(".totalTasks");
+const tasksContainer = document.querySelector(".tasks");
 
 //categories and tasks array for adding the into the category and task list
 let categories = [
@@ -212,14 +207,18 @@ let tasks = [
   // Add more tasks for each category as desired
 ];
 
-let selectedCategory = categories[0];
+//switch between the home-screen and category-screen sections
+const toggleScreen = () => {
+  wrapper.classList.toggle("show-category");
+};
 
-const categoriesContainer = document.querySelector(".categories");
-const categoryTitle = document.querySelector(".category-title");
-const totalCategoryTasks = document.querySelector(".category-tasks");
-const categoryImg = document.getElementById("category-img");
-const totalTasks = document.querySelector(".totalTasks");
-const tasksContainer = document.querySelector(".tasks");
+//toggle the backDrop and addTaskForm
+const toggleAddTaskForm = () => {
+  addTaskForm.classList.toggle("active");
+  blackBackDrop.classList.toggle("active");
+  addTaskBtn.classList.toggle("active");
+};
+let selectedCategory = categories[0];
 
 //calculate the total category tasks
 const calculateTotal = () => {
@@ -229,8 +228,31 @@ const calculateTotal = () => {
   );
   totalCategoryTasks.textContent = `${categoryTasks.length} Tasks`;
   totalTasks.textContent = tasks.length;
-};
 
+};
+const addTask = (e) => {
+  e.preventDefault();
+
+  const task = taskInput.value;
+  const category = categorySelect.value;
+
+  if (task === "") {
+    alert("Please enter the task");
+  } else {
+    const newTask = {
+      id: tasks.length + 1,
+      task,
+      category,
+      completed: false,
+    };
+
+    tasks.push(newTask);
+    taskInput.value = " ";
+    saveLocal();
+    toggleAddTaskForm();
+    renderTasks();
+  }
+};
 //rendering the category cards
 const renderCategories = () => {
   categoriesContainer.innerHTML = "";
@@ -391,38 +413,17 @@ const getLocal = () => {
     tasks = localTasks;
   }
 };
-const categorySelect = document.querySelector("#category-select");
-const cancelBtn = document.querySelector(".cancel-btn");
-const addBtn = document.querySelector(".add-btn");
-const taskInput = document.querySelector(".input-field");
 
+//Event handlers  
 cancelBtn.addEventListener("click", toggleAddTaskForm);
-
-addBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  const task = taskInput.value;
-  const category = categorySelect.value;
-
-  if (task === "") {
-    alert("Please enter the task");
-  } else {
-    const newTask = {
-      id: tasks.length + 1,
-      task,
-      category,
-      completed: false,
-    };
-
-    tasks.push(newTask);
-    taskInput.value = " ";
-    saveLocal();
-    toggleAddTaskForm();
-    renderTasks();
-  }
-});
+addTaskBtn.addEventListener("click", toggleAddTaskForm);
+blackBackDrop.addEventListener("click", toggleAddTaskForm);
+backBtn.addEventListener("click", toggleScreen);
+menuBtn.addEventListener("click", toggleScreen);
+addBtn.addEventListener("click", addTask);
 
 getLocal();
+saveLocal();
 renderTasks();
 
 categories.forEach((category) => {

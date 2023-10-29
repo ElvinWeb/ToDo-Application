@@ -351,6 +351,16 @@ body {
   padding: 50px 30px;
   transition: all 0.3s;
 }
+.add-task .add-task-backdrop {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 135%;
+  height: 20rem;
+  border-radius: 50% 50% 0 0;
+  background-color: var(--white-color);
+}
 .add-task.active {
   bottom: -30px;
 }
@@ -360,12 +370,11 @@ body {
   position: relative;
   z-index: 10;
 }
-
-.input-group {
+.add-task .input-group {
   position: relative;
   margin-bottom: 20px;
 }
-.input-group input {
+.add-task .input-group input {
   display: block;
   width: 100%;
   border: 1px solid #ccc;
@@ -373,32 +382,29 @@ body {
   padding: 10px;
   font-size: 16px;
 }
-.input-group label {
+.add-task .input-group label {
   display: block;
   width: 100%;
-  width: -moz-max-content;
-  width: max-content;
   padding: 0 5px;
   margin-top: 5px;
   font-size: 14px;
   color: var(--Dark-gray);
   margin-bottom: 5px;
 }
-.input-group select {
+.add-task .input-group select {
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
   font-size: 16px;
 }
-
-.btns {
+.add-task .btns {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 1rem;
 }
-.btns button {
+.add-task .btns button {
   padding: 10px 20px;
   border-radius: 5px;
   border: none;
@@ -407,24 +413,13 @@ body {
   cursor: pointer;
   z-index: 1;
 }
-.btns button.add-btn {
+.add-task .btns button.add-btn {
   background-color: var(--bg-gradient-color-2);
   color: var(--white-color);
 }
-.btns button.cancel-btn {
+.add-task .btns button.cancel-btn {
   background-color: var(--bg-gradient-color-1);
   color: var(--white-color);
-}
-
-.add-task-backdrop {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 135%;
-  height: 20rem;
-  border-radius: 50% 50% 0 0;
-  background-color: var(--white-color);
 }
 
 .black-backdrop {

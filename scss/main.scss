@@ -102,6 +102,7 @@ body {
         .backdrop-screen {
             transform: translate(-50%, -60%);
         }
+       
     }
 }
 
@@ -249,22 +250,22 @@ body {
                 input {
                     display: none;
 
-                    &:checked {
-                        ~ {
-                            .checkmark {
-                                background-color: $background-color_3;
+                    &:checked~ {
 
-                                svg {
-                                    color: $color_2;
-                                    @include hidden(visible, 1);
-                                }
-                            }
+                        .checkmark {
+                            background-color: $background-color_3;
 
-                            p {
-                                text-decoration: line-through;
-                                opacity: 0.6;
+                            svg {
+                                color: $color_2;
+                                @include hidden(visible, 1);
                             }
                         }
+
+                        p {
+                            text-decoration: line-through;
+                            opacity: 0.6;
+                        }
+
                     }
                 }
 
@@ -327,12 +328,20 @@ body {
 }
 
 .add-task {
-    position: absolute;
-    bottom: -100%;
-    left: 0;
+    @include position-absolute_1(-100%);
     width: $width-size_1;
     padding: 50px 30px;
     transition: all 0.3s;
+
+    .add-task-backdrop {
+        @include position-absolute(50%);
+        transform: translateX(-50%);
+        width: $width-size_1 + 35;
+        height: $height-size_2;
+        border-radius: 50% 50% 0 0;
+        background-color: $background-color_2;
+
+    }
 
     &.active {
         bottom: -30px;
@@ -344,73 +353,62 @@ body {
         position: relative;
         z-index: 10;
     }
-}
 
-.input-group {
-    position: relative;
-    margin-bottom: 20px;
+    .input-group {
+        position: relative;
+        margin-bottom: 20px;
 
-    input {
-        display: block;
-        width: $width-size_1;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        font-size: 16px;
-    }
+        input {
+            display: block;
+            width: $width-size_1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
 
-    label {
-        display: block;
-        width: $width-size_1;
-        width: max-content;
-        padding: 0 5px;
-        margin-top: 5px;
-        font-size: 14px;
-        color: $color_4;
-        margin-bottom: 5px;
-    }
+        label {
+            display: block;
+            width: $width-size_1;
+            padding: 0 5px;
+            margin-top: 5px;
+            font-size: 14px;
+            color: $color_4;
+            margin-bottom: 5px;
+        }
 
-    select {
-        width: $width-size_1;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        font-size: 16px;
-    }
-}
-
-.btns {
-    @include flex-box(center, flex-end);
-    gap: 1rem;
-
-    button {
-        padding: 10px 20px;
-        border-radius: 5px;
-        border: none;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        z-index: 1;
-
-        @each $name,
-        $bg-color in $bg-colors {
-            &.#{$name}-btn {
-                background-color: $bg-color;
-                color: $color_2;
-            }
+        select {
+            width: $width-size_1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
         }
     }
 
-}
+    .btns {
+        @include flex-box(center, flex-end);
+        gap: 1rem;
 
-.add-task-backdrop {
-    @include position-absolute(50%);
-    transform: translateX(-50%);
-    width: $width-size_1 + 35;
-    height: $height-size_2;
-    border-radius: 50% 50% 0 0;
-    background-color: $background-color_2;
+        button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 1;
 
+            @each $name,
+            $bg-color in $bg-colors {
+                &.#{$name}-btn {
+                    background-color: $bg-color;
+                    color: $color_2;
+                }
+            }
+        }
+
+    }
 }
 
 .black-backdrop {

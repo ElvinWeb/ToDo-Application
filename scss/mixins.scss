@@ -17,6 +17,12 @@
     left: $left;
 }
 
+@mixin position-absolute_1($bottom) {
+    position: absolute;
+    bottom: $bottom;
+    left: 0;
+}
+
 @mixin hidden($visible, $opacity) {
     opacity: $opacity;
     visibility: $visible;
@@ -28,9 +34,9 @@
     height: 100%;
 }
 
-@mixin transform($type, $firstVal, $secondVal) {
+@mixin transform($type,$translate, $firstVal, $secondVal) {
     .#{$type}-screen {
-        transform: translate($firstVal, $secondVal);
+        transform: #{$translate}($firstVal, $secondVal);
     }
 }
 

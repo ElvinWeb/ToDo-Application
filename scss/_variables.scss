@@ -1,0 +1,28 @@
+
+/*--------------Colors-----------*/
+$color_1: #2e2e2e;
+$color_2: #fff;
+$color_3: #c51605;
+$color_4: #666;
+$color_5: hsl(0, 0%, 96%);
+$color_6: #b92b27;
+$color_7: #1565c0;
+$background-color_1: rgba(0, 0, 0, 0.055);
+$background-color_2: rgba(0, 0, 0, 0.1);
+$background-color_3: #00000023;
+$bg-colors: (add: $color_7,
+    cancel: $color_6,
+); 
+/*--------------Fonts-----------*/
+$font-family_1: "Inter",
+sans-serif;
+$font-family_2: "Poppins",
+sans-serif;
+$font-family_3: "Nunito Sans",
+sans-serif;
+//-----------------width and Height sizes variable
+$width-size_1: 100%;
+$width-size_2: 5rem;
+$height-size_1: 100vh;
+$height-size_2: 20rem;
+$height-size_3:100%;

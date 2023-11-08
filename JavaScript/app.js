@@ -9,6 +9,7 @@ const categorySelect = document.querySelector("#category-select");
 const cancelBtn = document.querySelector(".cancel-btn");
 const addBtn = document.querySelector(".add-btn");
 const taskInput = document.querySelector(".input-field");
+const addTaskInput = document.getElementById("task-input");
 
 const categoriesContainer = document.querySelector(".categories");
 const categoryTitle = document.querySelector(".category-title");
@@ -227,8 +228,9 @@ const calculateTotal = () => {
       task.category.toLowerCase() === selectedCategory.title.toLowerCase()
   );
   totalCategoryTasks.textContent = `${categoryTasks.length} Tasks`;
-  totalTasks.textContent = tasks.length;
+  console.log(categoryTasks.length);
 
+  totalTasks.textContent = tasks.length;
 };
 const addTask = (e) => {
   e.preventDefault();
@@ -236,9 +238,11 @@ const addTask = (e) => {
   const task = taskInput.value;
   const category = categorySelect.value;
 
-  if (task === "") {
-    alert("Please enter the task");
+  if (task === " ") {
+    // alert("Please enter the task");
+    addTaskInput.classList.add("error");
   } else {
+    addTaskInput.classList.remove("error");
     const newTask = {
       id: tasks.length + 1,
       task,
@@ -312,9 +316,7 @@ const renderTasks = () => {
       task.category.toLowerCase() == selectedCategory.title.toLowerCase()
   );
   if (categoryTasks.length === 0) {
-    tasksContainer.innerHTML = `
-       <p class="no-task">No tasks for this category</p>  
-    `;
+    tasksContainer.innerHTML = ` <p class="no-task">No tasks for this category</p>  `;
   } else {
     categoryTasks.forEach((task) => {
       const div = document.createElement("div");
@@ -329,7 +331,7 @@ const renderTasks = () => {
 
       checkBox.addEventListener("change", () => {
         const index = tasks.findIndex((t) => t.id === task.id);
-        console.log(index);
+
         tasks[index].completed = !tasks[index].completed;
         saveLocal();
       });
@@ -392,6 +394,7 @@ const renderTasks = () => {
       const deleteBtn = div.querySelector(".delete");
       deleteBtn.addEventListener("click", () => {
         const index = tasks.findIndex((t) => t.id === task.id);
+
         tasks.splice(index, 1);
 
         saveLocal();
@@ -414,7 +417,7 @@ const getLocal = () => {
   }
 };
 
-//Event handlers  
+//Event handlers
 cancelBtn.addEventListener("click", toggleAddTaskForm);
 addTaskBtn.addEventListener("click", toggleAddTaskForm);
 blackBackDrop.addEventListener("click", toggleAddTaskForm);

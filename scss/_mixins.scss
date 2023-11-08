@@ -15,6 +15,7 @@
     position: absolute;
     top: 0;
     left: $left;
+    transform: translate(-$left);
 }
 
 @mixin position-absolute_1($bottom) {
@@ -32,12 +33,6 @@
     object-fit: $fit;
     width: 100%;
     height: 100%;
-}
-
-@mixin transform($type,$translate, $firstVal, $secondVal) {
-    .#{$type}-screen {
-        transform: #{$translate}($firstVal, $secondVal);
-    }
 }
 
 @mixin head-top($btn-name) {

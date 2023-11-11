@@ -1,0 +1,27 @@
+.add-task-btn {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    bottom: 1rem;
+    right: 1rem;
+    border-radius: 50%;
+    background-color: $color_6;
+    cursor: pointer;
+    @include flex-box(center, center);
+    transition: all 0.3s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    svg {
+        width: 2.3rem;
+        color: $color_2;
+    }
+
+    &.active {
+        transform: rotate(45deg);
+        bottom: 20rem;
+        z-index: 1;
+    }
+}

@@ -1,16 +1,10 @@
-@import "../scss/mixins";
-@import "../scss/variables";
-@import "../scss/placeholders";
-@import "../scss/reset";
-/* ------------Google-Fonts----------- */
+@import "../scss/abstracts/_abstract-dir";
+@import "../scss/base/_base-dir";
+@import "../scss/layout/_layout-dir";
+@import "../scss/components/_components-dir";
+
 @import "https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,500;6..12,600;6..12,700;6..12,800;6..12,900&family=Poppins:wght@200;300;400;500;600;700;800&family=Ubuntu:wght@300;400;500;700&display=swap";
 
-body {
-    min-height: $height-size_1;
-    color: $color_1;
-    background-color: $color_5;
-    @include flex-box(center, center);
-}
 
 .wrapper {
     position: relative;
@@ -19,18 +13,6 @@ body {
     height: $height-size_1;
     width: $width-size_1;
     padding: 30px 0;
-
-    .backdrop-screen {
-        width: $width-size_1 + 35;
-        height: $height-size_2 + 5;
-        background: $color_7;
-        background: linear-gradient(to right, $color_6, $color_7);
-        border-radius: 0 0 50% 50%;
-        @include position-absolute(50%);
-        z-index: -1;
-        transition: all 0.3s;
-    }
-
     .screen {
         flex: 1;
         min-width: $width-size_1;
@@ -156,30 +138,6 @@ body {
     }
 }
 
-.category-screen {
-    @include head-top(back);
-
-    .category-details {
-        padding: 0 30px;
-        margin-top: 8rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-
-        img {
-            width: $width-size_2 - 1;
-        }
-
-        .details p {
-
-            opacity: 0.6;
-
-        }
-    }
-}
-
-
-
 .tasks-wrapper {
     padding: 0 30px;
     margin-top: 1rem;
@@ -278,120 +236,6 @@ body {
     }
 
 }
-
-
-
-.add-task-btn {
-    position: absolute;
-    width: 3rem;
-    height: 3rem;
-    bottom: 1rem;
-    right: 1rem;
-    border-radius: 50%;
-    background-color: $color_6;
-    cursor: pointer;
-    @include flex-box(center, center);
-    transition: all 0.3s;
-
-    &:hover {
-        transform: scale(1.1);
-    }
-
-    svg {
-        width: 2.3rem;
-        color: $color_2;
-    }
-
-    &.active {
-        transform: rotate(45deg);
-        bottom: 20rem;
-        z-index: 1;
-    }
-}
-
-.add-task {
-    @include position-absolute_1(-100%);
-    width: $width-size_1;
-    padding: 50px 30px;
-    transition: all 0.3s;
-
-    .add-task-backdrop {
-        @include position-absolute(50%);
-        width: $width-size_1 + 35;
-        height: $height-size_2 + 1;
-        border-radius: 50% 50% 0 0;
-        background-color: $color_2;
-
-    }
-
-    &.active {
-        bottom: -30px;
-    }
-
-    .head {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-        position: relative;
-        z-index: 10;
-    }
-
-    .input-group {
-        position: relative;
-        margin-bottom: 20px;
-
-        .todo-input,
-        .todo-category {
-            @extend %input-design;
-        }
-
-        label {
-            display: block;
-            width: $width-size_1;
-            font-size: 15px;
-            padding: 6px;
-            color: $color_4;
-        }
-    }
-
-    .btns {
-        @include flex-box(center, flex-end);
-        gap: 1rem;
-
-        button {
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: none;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            z-index: 1;
-
-            @each $name,
-            $bg-color in $bg-colors {
-                &.#{$name}-btn {
-                    background-color: $bg-color;
-                    color: $color_2;
-                }
-            }
-        }
-
-    }
-}
-
-.black-backdrop {
-    @include position-absolute(0);
-    @include hidden(hidden, 0);
-    width: $width-size_1;
-    height: $height-size_3;
-    backdrop-filter: blur(5px);
-    background-color: $background-color_3;
-
-    &.active {
-        @include hidden(visible, 1)
-    }
-}
-
-
 @media (min-width: 768px) {
     .wrapper {
         height: 50rem;

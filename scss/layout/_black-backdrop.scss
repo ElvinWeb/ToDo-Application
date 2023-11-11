@@ -1,0 +1,12 @@
+.black-backdrop {
+    @include position-absolute(0);
+    @include hidden(hidden, 0);
+    width: $width-size_1;
+    height: $height-size_3;
+    backdrop-filter: blur(5px);
+    background-color: $background-color_3;
+
+    &.active {
+        @include hidden(visible, 1)
+    }
+}

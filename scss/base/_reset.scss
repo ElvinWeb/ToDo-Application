@@ -5,19 +5,16 @@
     list-style: none;
     outline: none;
     text-decoration: none;
-    font-family: $font-family_1;
-}
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    overflow-wrap: break-word;
 }
 
 ::-webkit-scrollbar {
     width: 0;
+}
+
+body {
+    min-height: $height-size_1;
+    background-color: $color_5;
+    font-family: $font-family_1;
+    color: $color_1;
+    @include flex-box(center, center);
 }

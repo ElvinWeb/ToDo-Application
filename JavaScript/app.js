@@ -1,22 +1,20 @@
-const wrapper = document.querySelector(".wrapper");
-const menuBtn = document.querySelector(".menu-btn");
-const backBtn = document.querySelector(".back-btn");
-const addTaskBtn = document.querySelector(".add-task-btn");
-const addTaskForm = document.querySelector(".add-task");
-const blackBackDrop = document.querySelector(".black-backdrop");
-
-const categorySelect = document.querySelector("#category-select");
-const cancelBtn = document.querySelector(".cancel-btn");
-const addBtn = document.querySelector(".add-btn");
-const taskInput = document.querySelector(".input-field");
-const addTaskInput = document.getElementById("task-input");
-
-const categoriesContainer = document.querySelector(".categories");
-const categoryTitle = document.querySelector(".category-title");
-const totalCategoryTasks = document.querySelector(".category-tasks");
-const categoryImg = document.getElementById("category-img");
-const totalTasks = document.querySelector(".totalTasks");
-const tasksContainer = document.querySelector(".tasks");
+const wrapper = document.querySelector(".wrapper"),
+  menuBtn = document.querySelector(".menu-btn"),
+  backBtn = document.querySelector(".back-btn"),
+  addTaskBtn = document.querySelector(".add-task-btn"),
+  addTaskForm = document.querySelector(".add-task"),
+  blackBackDrop = document.querySelector(".black-backdrop"),
+  categorySelect = document.querySelector("#category-select"),
+  cancelBtn = document.querySelector(".cancel-btn"),
+  addBtn = document.querySelector(".add-btn"),
+  taskInput = document.querySelector(".input-field"),
+  addTaskInput = document.getElementById("task-input"),
+  categoriesContainer = document.querySelector(".categories"),
+  categoryTitle = document.querySelector(".category-title"),
+  totalCategoryTasks = document.querySelector(".category-tasks"),
+  categoryImg = document.getElementById("category-img"),
+  totalTasks = document.querySelector(".totalTasks"),
+  tasksContainer = document.querySelector(".tasks");
 
 //categories and tasks array for adding the into the category and task list
 let categories = [

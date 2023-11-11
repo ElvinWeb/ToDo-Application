@@ -1,0 +1,21 @@
+.category-screen {
+    @include head-top(back);
+
+    .category-details {
+        padding: 0 30px;
+        margin-top: 8rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        img {
+            width: $width-size_2 - 1;
+        }
+
+        .details p {
+
+            opacity: 0.6;
+
+        }
+    }
+}

@@ -8,24 +8,92 @@
     <link rel="stylesheet" href="../StyleSheet/main.css" />
   </head>
   <body>
-    <div class="wrapper">
-      <div class="backdrop-screen"></div>
-      <div class="screen home-screen">
-        <div class="head-wrapper">
+    <main>
+      <div class="wrapper">
+        <div class="backdrop-screen"></div>
+        <div class="screen home-screen">
+          <div class="head-wrapper">
+            <div class="head-top">
+              <div class="menu-btn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
+                  />
+                </svg>
+              </div>
+              <div class="top-logo">
+                <img src="../Images/ToDo-List-Logo.png" alt="" />
+              </div>
+            </div>
+            <div class="welcome">
+              <div class="content">
+                <h1 class="content-head">Hello Elvin</h1>
+                <p class="content-text">
+                  Today you Have <span class="totalTasks">5</span> tasks
+                </p>
+              </div>
+              <div class="user-img">
+                <div class="backdrop"></div>
+                <img src="../Images/boy.png" alt="" />
+              </div>
+            </div>
+          </div>
+          <div class="categories-wrapper">
+            <div class="categories">
+              <div class="category">
+                <div class="left">
+                  <img src="../Images/boy.png" alt="" />
+                  <div class="content">
+                    <h1>Personal</h1>
+                    <p>5 Tasks</p>
+                  </div>
+                </div>
+                <div class="options">
+                  <div class="toggle-btn">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-6 h-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen category-screen">
           <div class="head-top">
-            <div class="menu-btn">
+            <div class="back-btn">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-6 h-6"
+                class="ionicon"
+                viewBox="0 0 512 512"
               >
                 <path
+                  fill="none"
+                  stroke="currentColor"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
+                  stroke-width="32"
+                  d="M368 368L144 144M368 144L144 368"
                 />
               </svg>
             </div>
@@ -33,178 +101,114 @@
               <img src="../Images/ToDo-List-Logo.png" alt="" />
             </div>
           </div>
-          <div class="welcome">
-            <div class="content">
-              <h1 class="content-head">Hello Elvin</h1>
-              <p class="content-text">Today you Have <span class="totalTasks">5</span> tasks</p>
-            </div>
-            <div class="user-img">
-              <div class="backdrop"></div>
-              <img src="../Images/boy.png" alt="" />
+          <div class="category-details">
+            <img src="../Images/boy.png" alt="" id="category-img" />
+            <div class="details">
+              <p class="category-tasks">8 tasks</p>
+              <h1 class="category-title">Personal</h1>
             </div>
           </div>
-        </div>
-        <div class="categories-wrapper">
-          <div class="categories">
-            <div class="category">
-              <div class="left">
-                <img src="../Images/boy.png" alt="" />
-                <div class="content">
-                  <h1>Personal</h1>
-                  <p>5 Tasks</p>
-                </div>
-              </div>
-              <div class="options">
-                <div class="toggle-btn">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-6 h-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="screen category-screen">
-        <div class="head-top">
-          <div class="back-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="ionicon"
-              viewBox="0 0 512 512"
-            >
-              <path
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="32"
-                d="M368 368L144 144M368 144L144 368"
-              />
-            </svg>
-          </div>
-          <div class="top-logo">
-            <img src="../Images/ToDo-List-Logo.png" alt="" />
-          </div>
-        </div>
-        <div class="category-details">
-          <img src="../Images/boy.png" alt="" id="category-img" />
-          <div class="details">
-            <p class="category-tasks">8 tasks</p>
-            <h1 class="category-title">Personal</h1>
-          </div>
-        </div>
-        <div class="tasks-wrapper">
-          <div class="tasks">
-            <div class="task-wrapper">
-              <label for="task-input" class="task">
-                <input
-                  type="checkbox"
-                  name="checkbox"
-                  id="task-input"
-                  class="check"
-                />
-                <span class="checkmark">
+          <div class="tasks-wrapper">
+            <div class="tasks">
+              <div class="task-wrapper">
+                <label for="task-input" class="task">
+                  <input
+                    type="checkbox"
+                    name="checkbox"
+                    id="task-input"
+                    class="check"
+                  />
+                  <span class="checkmark">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="ionicon"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M416 128L192 384l-96-96"
+                      />
+                    </svg>
+                  </span>
+                  <p>Buy a new</p>
+                </label>
+                <div class="delete">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="ionicon"
                     viewBox="0 0 512 512"
                   >
                     <path
+                      d="M112 112l20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320"
                       fill="none"
                       stroke="currentColor"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="32"
-                      d="M416 128L192 384l-96-96"
+                    />
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-miterlimit="10"
+                      stroke-width="32"
+                      d="M80 112h352"
+                    />
+                    <path
+                      d="M192 112V72h0a23.93 23.93 0 0124-24h80a23.93 23.93 0 0124 24h0v40M256 176v224M184 176l8 224M328 176l-8 224"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="32"
                     />
                   </svg>
-                </span>
-                <p>Buy a new</p>
-              </label>
-              <div class="delete">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="ionicon"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    d="M112 112l20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="32"
-                  />
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-miterlimit="10"
-                    stroke-width="32"
-                    d="M80 112h352"
-                  />
-                  <path
-                    d="M192 112V72h0a23.93 23.93 0 0124-24h80a23.93 23.93 0 0124 24h0v40M256 176v224M184 176l8 224M328 176l-8 224"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="32"
-                  />
-                </svg>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="add-task-btn">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="ionicon"
-          viewBox="0 0 512 512"
-        >
-          <path
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="32"
-            d="M256 112v288M400 256H112"
-          />
-        </svg>
-      </div>
+        <div class="add-task-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="ionicon"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="32"
+              d="M256 112v288M400 256H112"
+            />
+          </svg>
+        </div>
 
-      <div class="black-backdrop"></div>
-      <div class="add-task">
-        <div class="add-task-backdrop"></div>
-        <h1 class="head">Add Task</h1>
-        <div class="input-group">
-          <label for="task-input">Task</label>
-          <input type="text" id="task-input" class="todo-input" />
-        </div>
-        <div class="input-group">
-          <label for="category-select">Category</label>
-          <select type="text" id="category-select" class="todo-category">
-            <option value="personal">Personal</option>
-          </select>
-        </div>
-        <div class="btns">
-          <button class="cancel-btn">Cancel</button>
-          <button class="add-btn">Add</button>
+        <div class="black-backdrop"></div>
+        <div class="add-task">
+          <div class="add-task-backdrop"></div>
+          <h1 class="head">Add Task</h1>
+          <div class="input-group">
+            <label for="task-input">Task</label>
+            <input type="text" id="task-input" class="todo-input" />
+          </div>
+          <div class="input-group">
+            <label for="category-select">Category</label>
+            <select type="text" id="category-select" class="todo-category">
+              <option value="personal">Personal</option>
+            </select>
+          </div>
+          <div class="btns">
+            <button class="cancel-btn">Cancel</button>
+            <button class="add-btn">Add</button>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
     <script src="../JavaScript/app.js"></script>
     <script
       type="module"

@@ -1,0 +1,17 @@
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+
+    .todo-input,
+    .todo-category {
+        @extend %input-design;
+    }
+
+    label {
+        display: block;
+        width: $width-size_1;
+        font-size: 15px;
+        padding: 6px;
+        color: $color_4;
+    }
+}

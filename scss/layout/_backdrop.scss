@@ -1,0 +1,10 @@
+.backdrop-screen {
+    width: $width-size_1 + 35;
+    height: $height-size_2 + 5;
+    background: $color_7;
+    background: linear-gradient(to right, $color_6, $color_7);
+    border-radius: 0 0 50% 50%;
+    @include position-absolute(50%);
+    z-index: -1;
+    transition: all 0.3s;
+}

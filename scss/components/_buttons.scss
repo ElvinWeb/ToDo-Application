@@ -1,0 +1,23 @@
+.btns {
+    @include flex-box(center, flex-end);
+    gap: 1rem;
+
+    button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        z-index: 1;
+
+        @each $name,
+        $bg-color in $bg-colors {
+            &.#{$name}-btn {
+                background-color: $bg-color;
+                color: $color_2;
+            }
+        }
+    }
+
+}

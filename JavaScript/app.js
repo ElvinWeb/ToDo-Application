@@ -7,7 +7,7 @@ const wrapper = document.querySelector(".wrapper"),
   categorySelect = document.querySelector("#category-select"),
   cancelBtn = document.querySelector(".cancel-btn"),
   addBtn = document.querySelector(".add-btn"),
-  taskInput = document.querySelector(".input-field"),
+  taskInput = document.querySelector(".todo-input"),
   addTaskInput = document.getElementById("task-input"),
   categoriesContainer = document.querySelector(".categories"),
   categoryTitle = document.querySelector(".category-title"),
@@ -226,21 +226,19 @@ const calculateTotal = () => {
       task.category.toLowerCase() === selectedCategory.title.toLowerCase()
   );
   totalCategoryTasks.textContent = `${categoryTasks.length} Tasks`;
-  console.log(categoryTasks.length);
+  console.log(categoryTasks);
 
   totalTasks.textContent = tasks.length;
 };
 const addTask = (e) => {
   e.preventDefault();
-
+  console.log(taskInput);
   const task = taskInput.value;
   const category = categorySelect.value;
 
   if (task === " ") {
-    // alert("Please enter the task");
-    addTaskInput.classList.add("error");
+    alert("Please enter the task");
   } else {
-    addTaskInput.classList.remove("error");
     const newTask = {
       id: tasks.length + 1,
       task,
@@ -313,6 +311,10 @@ const renderTasks = () => {
     (task) =>
       task.category.toLowerCase() == selectedCategory.title.toLowerCase()
   );
+
+  totalCategoryTasks.textContent = `${categoryTasks.length} Tasks`;
+  totalTasks.textContent = tasks.length;
+
   if (categoryTasks.length === 0) {
     tasksContainer.innerHTML = ` <p class="no-task">No tasks for this category</p>  `;
   } else {
@@ -396,7 +398,9 @@ const renderTasks = () => {
         tasks.splice(index, 1);
 
         saveLocal();
+        getLocal();
         renderTasks();
+        renderCategories();
       });
     });
     renderCategories();
@@ -410,7 +414,7 @@ const saveLocal = () => {
 const getLocal = () => {
   const localTasks = JSON.parse(localStorage.getItem("tasks"));
 
-  if (localTasks) {
+  if (!localTasks) {
     tasks = localTasks;
   }
 };
@@ -424,7 +428,6 @@ menuBtn.addEventListener("click", toggleScreen);
 addBtn.addEventListener("click", addTask);
 
 getLocal();
-saveLocal();
 renderTasks();
 
 categories.forEach((category) => {

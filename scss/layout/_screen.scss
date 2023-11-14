@@ -1,0 +1,45 @@
+.screen {
+    flex: 1;
+    min-width: $width-size_1;
+    transition: all 0.3s;
+
+    .head-wrapper {
+        padding: 0px 30px;
+        @include head-top(menu);
+
+        .welcome {
+            @include flex-box(center, space-between);
+            margin-top: 30px;
+        }
+
+        .content {
+            color: $color_2;
+
+            &-head {
+                font-size: 1.5rem;
+            }
+
+            &-text {
+                font-weight: 500;
+                line-height: 20px;
+            }
+        }
+
+        .user-img {
+            position: relative;
+
+            img {
+                width: $width-size_2;
+            }
+
+            .backdrop {
+                @include position-absolute(50%);
+                width: $width-size_2 - 1.2;
+                height: $height-size_2 - 16;
+                border-radius: 50%;
+                background-color: $color_2;
+                z-index: -1;
+            }
+        }
+    }
+}

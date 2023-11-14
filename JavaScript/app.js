@@ -232,7 +232,7 @@ const calculateTotal = () => {
 };
 const addTask = (e) => {
   e.preventDefault();
-  console.log(taskInput);
+
   const task = taskInput.value;
   const category = categorySelect.value;
 
@@ -261,47 +261,126 @@ const renderCategories = () => {
     const categoryTasks = tasks.filter(
       (task) => task.category.toLowerCase() == category.title.toLowerCase()
     );
-
-    //create a category card div
-    const div = document.createElement("div");
-    div.classList.add("category");
-    div.addEventListener("click", () => {
-      wrapper.classList.add("show-category");
-      selectedCategory = category;
-      categoryImg.src = `../Images/${category.img}`;
-      categoryTitle.textContent = category.title;
-      calculateTotal();
-      renderTasks();
-    });
-    div.innerHTML = ` 
-    <div class="left">
-      <img src="../Images/${category.img}" alt=${category.title} />
-      <div class="content">
-        <h1>${category.title}</h1>
-        <p>${categoryTasks.length} Tasks</p>
-      </div>
+    createCategoryCard(category, categoryTasks);
+  });
+};
+// creating the category cards
+const createCategoryCard = (category, categoryTasks) => {
+  const div = document.createElement("div");
+  div.classList.add("category");
+  div.addEventListener("click", () => {
+    wrapper.classList.add("show-category");
+    selectedCategory = category;
+    categoryImg.src = `../Images/${category.img}`;
+    categoryTitle.textContent = category.title;
+    calculateTotal();
+    renderTasks();
+  });
+  div.innerHTML = ` 
+  <div class="left">
+    <img src="../Images/${category.img}" alt=${category.title} class="category-img"/>
+    <div class="content">
+      <h1>${category.title}</h1>
+      <p>${categoryTasks.length} Tasks</p>
     </div>
-    <div class="options">
-      <div class="toggle-btn">
-          <svg
-          xmlns="http://www.w3.org/2000/svg"
+  </div>
+  <div class="options">
+    <div class="toggle-btn">
+        <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+        >
+        <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
+        />
+        </svg>
+    </div>
+  </div>
+  `;
+  categoriesContainer.appendChild(div);
+};
+// creating the categories tasks
+const createCategoryTask = (task, tasks) => {
+  const div = document.createElement("div");
+  div.classList.add("task-wrapper");
+  const label = document.createElement("label");
+  label.classList.add("task");
+  label.setAttribute("for", task.id);
+  const checkBox = document.createElement("input");
+  checkBox.type = "checkbox";
+  checkBox.id = task.id;
+  checkBox.checked = task.completed;
+
+  checkBox.addEventListener("change", () => {
+    const index = tasks.findIndex((t) => t.id === task.id);
+
+    tasks[index].completed = !tasks[index].completed;
+    saveLocal();
+  });
+  div.innerHTML = `
+    <div class="delete">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="ionicon"
+        viewBox="0 0 512 512"
+      >
+        <path
+          d="M112 112l20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320"
           fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
           stroke="currentColor"
-          class="w-6 h-6"
-          >
-          <path
           stroke-linecap="round"
           stroke-linejoin="round"
-          d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
-          />
-          </svg>
-      </div>
-    </div>
-    `;
-    categoriesContainer.appendChild(div);
-  });
+          stroke-width="32"
+        />
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-miterlimit="10"
+          stroke-width="32"
+          d="M80 112h352"
+        />
+        <path
+          d="M192 112V72h0a23.93 23.93 0 0124-24h80a23.93 23.93 0 0124 24h0v40M256 176v224M184 176l8 224M328 176l-8 224"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="32"
+        />
+      </svg>
+  </div>
+  `;
+
+  label.innerHTML = `
+    <span class="checkmark">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="ionicon"
+        viewBox="0 0 512 512">
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="32"
+          d="M416 128L192 384l-96-96"
+        />
+      </svg>
+    </span>
+    <p>${task.task}</p>
+  `;
+
+  label.prepend(checkBox);
+  div.prepend(label);
+  tasksContainer.appendChild(div);
+
+  deleteTask(div, tasks, task);
 };
 //rendering the each category tasks
 const renderTasks = () => {
@@ -319,104 +398,32 @@ const renderTasks = () => {
     tasksContainer.innerHTML = ` <p class="no-task">No tasks for this category</p>  `;
   } else {
     categoryTasks.forEach((task) => {
-      const div = document.createElement("div");
-      div.classList.add("task-wrapper");
-      const label = document.createElement("label");
-      label.classList.add("task");
-      label.setAttribute("for", task.id);
-      const checkBox = document.createElement("input");
-      checkBox.type = "checkbox";
-      checkBox.id = task.id;
-      checkBox.checked = task.completed;
-
-      checkBox.addEventListener("change", () => {
-        const index = tasks.findIndex((t) => t.id === task.id);
-
-        tasks[index].completed = !tasks[index].completed;
-        saveLocal();
-      });
-      div.innerHTML = `
-        <div class="delete">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="ionicon"
-            viewBox="0 0 512 512"
-          >
-            <path
-              d="M112 112l20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="32"
-            />
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-miterlimit="10"
-              stroke-width="32"
-              d="M80 112h352"
-            />
-            <path
-              d="M192 112V72h0a23.93 23.93 0 0124-24h80a23.93 23.93 0 0124 24h0v40M256 176v224M184 176l8 224M328 176l-8 224"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="32"
-            />
-          </svg>
-      </div>
-      `;
-
-      label.innerHTML = `
-        <span class="checkmark">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="ionicon"
-            viewBox="0 0 512 512">
-            <path
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="32"
-              d="M416 128L192 384l-96-96"
-            />
-          </svg>
-        </span>
-        <p>${task.task}</p>
-      `;
-      label.prepend(checkBox);
-      div.prepend(label);
-      tasksContainer.appendChild(div);
-
-      const deleteBtn = div.querySelector(".delete");
-      deleteBtn.addEventListener("click", () => {
-        const index = tasks.findIndex((t) => t.id === task.id);
-
-        tasks.splice(index, 1);
-
-        saveLocal();
-        getLocal();
-        renderTasks();
-        renderCategories();
-      });
+      createCategoryTask(task, tasks);
     });
     renderCategories();
-    calculateTotal();
   }
 };
+// delete task from category tasks list
+const deleteTask = (divEl, tasks, task) => {
+  const deleteBtn = divEl.querySelector(".delete");
+  deleteBtn.addEventListener("click", () => {
+    const index = tasks.findIndex((t) => t.id === task.id);
+    tasks.splice(index, 1);
+
+    saveLocal();
+    getLocal();
+    renderTasks();
+    renderCategories();
+    calculateTotal();
+  });
+};
+//saving the tasks in Local Storage
 const saveLocal = () => {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
-
+// getting the tasks in Local Storage
 const getLocal = () => {
   const localTasks = JSON.parse(localStorage.getItem("tasks"));
-
-  if (!localTasks) {
-    tasks = localTasks;
-  }
 };
 
 //Event handlers
@@ -426,7 +433,6 @@ blackBackDrop.addEventListener("click", toggleAddTaskForm);
 backBtn.addEventListener("click", toggleScreen);
 menuBtn.addEventListener("click", toggleScreen);
 addBtn.addEventListener("click", addTask);
-
 getLocal();
 renderTasks();
 

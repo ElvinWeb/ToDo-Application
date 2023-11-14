@@ -1,0 +1,28 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    height: $height-size_1;
+    width: $width-size_1;
+    padding: 30px 0;
+
+    @media only screen and (min-width: 768px) {
+        height: 50rem;
+        width: 25rem;
+        border-radius: 35px;
+        border: 10px solid $color_1;
+    }
+
+    &.show-category {
+
+        .home-screen,
+        .category-screen {
+            transform: translateX(-100%);
+        }
+
+        .backdrop-screen {
+            transform: translate(-50%, -60%);
+        }
+
+    }
+}

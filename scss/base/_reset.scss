@@ -14,6 +14,9 @@
 body {
     min-height: $height-size_1;
     background-color: $color_5;
+    // background: #ffd89b;  
+    // background: linear-gradient(to right, #19547b, #ffd89b); 
+
     font-family: $font-family_1;
     color: $color_1;
     @include flex-box(center, center);

@@ -34,6 +34,10 @@ body {
   justify-content: center;
 }
 
+.error {
+  border: 1px solid #c51605 !important;
+}
+
 .wrapper {
   position: relative;
   display: flex;
@@ -42,7 +46,7 @@ body {
   width: 100%;
   padding: 30px 0;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 567px) {
   .wrapper {
     height: 50rem;
     width: 25rem;
@@ -151,8 +155,8 @@ body {
   width: 135%;
   height: 25rem;
   background: #1565c0;
-  background: linear-gradient(to right, #b92b27, #1565c0);
   border-radius: 0 0 50% 50%;
+  background: linear-gradient(to right, #b92b27, #1565c0);
   position: absolute;
   top: 0;
   left: 50%;
@@ -222,6 +226,7 @@ body {
 .screen .head-wrapper .content-text {
   font-weight: 500;
   line-height: 20px;
+  margin-top: 5px;
 }
 .screen .head-wrapper .user-img {
   position: relative;
@@ -304,40 +309,41 @@ body {
   gap: 1rem;
 }
 
-.btns {
+.task-wrapper {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 1rem;
+  justify-content: space-between;
 }
-.btns button {
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  font-size: 14px;
-  font-weight: 600;
+.task-wrapper .task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  width: -moz-max-content;
+  width: max-content;
   cursor: pointer;
-  z-index: 1;
 }
-.btns button.add-btn {
-  background-color: #1565c0;
-  color: #fff;
+.task-wrapper .task .checkmark {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 3px;
+  border: 1px solid #2e2e2e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.btns button.cancel-btn {
-  background-color: #b92b27;
-  color: #fff;
+.task-wrapper .task .checkmark svg {
+  width: 1rem;
+  color: #2e2e2e;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
 }
-
-.input-group {
-  position: relative;
-  margin-bottom: 20px;
-}
-.input-group label {
-  display: block;
-  width: 100%;
-  font-size: 15px;
-  padding: 6px;
-  color: #666;
+.task-wrapper .task:hover .checkmark svg {
+  opacity: 1;
+  visibility: visible;
 }
 
 .tasks-wrapper {
@@ -364,12 +370,32 @@ body {
   font-size: 1.5rem;
   opacity: 0.6;
 }
-.tasks-wrapper .tasks .task-wrapper {
+
+.btns {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 1rem;
 }
-.tasks-wrapper .tasks .task-wrapper .delete {
+.btns button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 1;
+}
+.btns button.add-btn {
+  background-color: #1565c0;
+  color: #fff;
+}
+.btns button.cancel-btn {
+  background-color: #b92b27;
+  color: #fff;
+}
+
+.delete-btn {
   min-width: 2rem;
   height: 2rem;
   padding: 0.5rem;
@@ -381,57 +407,40 @@ body {
   visibility: hidden;
   transition: all 0.3s;
 }
-.tasks-wrapper .tasks .task-wrapper .delete:hover {
+.delete-btn:hover {
   color: #c51605;
   background-color: rgba(0, 0, 0, 0.1);
 }
-.tasks-wrapper .tasks .task-wrapper:hover .delete {
+
+.task-wrapper:hover .delete-btn {
   opacity: 1;
   visibility: visible;
 }
-.tasks-wrapper .tasks .task-wrapper .task {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-size: 0.8rem;
-  font-weight: 500;
-  width: -moz-max-content;
-  width: max-content;
-  cursor: pointer;
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
 }
-.tasks-wrapper .tasks .task-wrapper .task input {
+.input-group label {
+  display: block;
+  width: 100%;
+  font-size: 15px;
+  padding: 6px;
+  color: #666;
+}
+
+.task-check {
   display: none;
 }
-.tasks-wrapper .tasks .task-wrapper .task input:checked ~ .checkmark {
+.task-check:checked ~ .checkmark {
   background-color: #2e2e2e;
 }
-.tasks-wrapper .tasks .task-wrapper .task input:checked ~ .checkmark svg {
+.task-check:checked ~ .checkmark svg {
   color: #fff;
   opacity: 1;
   visibility: visible;
 }
-.tasks-wrapper .tasks .task-wrapper .task input:checked ~ p {
+.task-check:checked ~ p {
   text-decoration: line-through;
   opacity: 0.6;
-}
-.tasks-wrapper .tasks .task-wrapper .task .checkmark {
-  width: 1rem;
-  height: 1rem;
-  border-radius: 3px;
-  border: 1px solid #2e2e2e;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.tasks-wrapper .tasks .task-wrapper .task .checkmark svg {
-  width: 1rem;
-  color: #2e2e2e;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.2s ease;
-}
-.tasks-wrapper .tasks .task-wrapper .task:hover .checkmark svg {
-  opacity: 1;
-  visibility: visible;
 }/*# sourceMappingURL=main.css.map */

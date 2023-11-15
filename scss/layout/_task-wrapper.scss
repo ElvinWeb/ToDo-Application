@@ -1,0 +1,32 @@
+.task-wrapper {
+    @include flex-box(center, space-between);
+
+    .task {
+        @include flex-box(center, center);
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+        width: max-content;
+        cursor: pointer;
+
+        .checkmark {
+            width: $width-size_2 - 4;
+            height: $height-size_2 - 19;
+            border-radius: 3px;
+            border: 1px solid $color_1;
+            @include flex-box(center, center);
+
+            svg {
+                width: $width-size_2 - 4;
+                color: $color_1;
+                @include hidden(hidden, 0);
+                transition: all 0.2s ease;
+            }
+        }
+
+        &:hover .checkmark svg {
+            @include hidden(visible, 1);
+
+        }
+    }
+}

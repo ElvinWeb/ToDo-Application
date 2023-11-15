@@ -210,7 +210,6 @@ let tasks = [
 const toggleScreen = () => {
   wrapper.classList.toggle("show-category");
 };
-
 //toggle the backDrop and addTaskForm
 const toggleAddTaskForm = () => {
   addTaskForm.classList.toggle("active");
@@ -218,7 +217,6 @@ const toggleAddTaskForm = () => {
   addTaskBtn.classList.toggle("active");
 };
 let selectedCategory = categories[0];
-
 //calculate the total category tasks
 const calculateTotal = () => {
   const categoryTasks = tasks.filter(
@@ -236,6 +234,7 @@ const addTask = (e) => {
   const task = taskInput.value;
   const category = categorySelect.value;
 
+  
   if (task === " ") {
     alert("Please enter the task");
   } else {
@@ -246,11 +245,12 @@ const addTask = (e) => {
       completed: false,
     };
 
-    tasks.push(newTask);
     taskInput.value = " ";
+    tasks.push(newTask);
     saveLocal();
     toggleAddTaskForm();
     renderTasks();
+    taskInput.classList.remove("error");
   }
 };
 //rendering the category cards
@@ -306,25 +306,26 @@ const createCategoryCard = (category, categoryTasks) => {
   categoriesContainer.appendChild(div);
 };
 // creating the categories tasks
-const createCategoryTask = (task, tasks) => {
+const createCategoryTask = (task, allTask) => {
   const div = document.createElement("div");
   div.classList.add("task-wrapper");
   const label = document.createElement("label");
   label.classList.add("task");
   label.setAttribute("for", task.id);
   const checkBox = document.createElement("input");
+  checkBox.classList.add("task-check");
   checkBox.type = "checkbox";
   checkBox.id = task.id;
   checkBox.checked = task.completed;
 
   checkBox.addEventListener("change", () => {
-    const index = tasks.findIndex((t) => t.id === task.id);
+    const index = allTask.findIndex((wantedTask) => wantedTask.id === task.id);
 
-    tasks[index].completed = !tasks[index].completed;
+    allTask[index].completed = !allTask[index].completed;
     saveLocal();
   });
   div.innerHTML = `
-    <div class="delete">
+    <div class="delete-btn">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="ionicon"
@@ -380,7 +381,7 @@ const createCategoryTask = (task, tasks) => {
   div.prepend(label);
   tasksContainer.appendChild(div);
 
-  deleteTask(div, tasks, task);
+  deleteTask(div, allTask, task);
 };
 //rendering the each category tasks
 const renderTasks = () => {
@@ -404,11 +405,11 @@ const renderTasks = () => {
   }
 };
 // delete task from category tasks list
-const deleteTask = (divEl, tasks, task) => {
-  const deleteBtn = divEl.querySelector(".delete");
+const deleteTask = (taskDiv, allTask, task) => {
+  const deleteBtn = taskDiv.querySelector(".delete-btn");
   deleteBtn.addEventListener("click", () => {
-    const index = tasks.findIndex((t) => t.id === task.id);
-    tasks.splice(index, 1);
+    const index = allTask.findIndex((wantedTask) => wantedTask.id === task.id);
+    allTask.splice(index, 1);
 
     saveLocal();
     getLocal();

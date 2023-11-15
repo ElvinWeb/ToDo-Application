@@ -21,3 +21,24 @@
     }
 
 }
+
+.delete-btn {
+    min-width: $width-size_2 - 3;
+    height: $height-size_2 - 18;
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: $color_1;
+    cursor: pointer;
+    background-color: $background-color_1;
+    @include hidden(hidden, 0);
+    transition: all 0.3s;
+
+    &:hover {
+        color: $color_3;
+        background-color: $background-color_2;
+    }
+}
+
+.task-wrapper:hover .delete-btn {
+    @include hidden(visible, 1)
+}

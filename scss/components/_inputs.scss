@@ -15,3 +15,25 @@
         color: $color_4;
     }
 }
+
+.task-check {
+    display: none;
+
+    &:checked~ {
+
+        .checkmark {
+            background-color: $color_1;
+
+            svg {
+                color: $color_2;
+                @include hidden(visible, 1);
+            }
+        }
+
+        p {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+    }
+}

@@ -1,13 +1,13 @@
 .add-task {
     @include position-absolute_1(-100%);
     width: $width-size_1;
-    padding: 50px 30px;
+    padding: 40px 30px;
     transition: all 0.3s;
 
     .add-task-backdrop {
         @include position-absolute(50%);
         width: $width-size_1 + 35;
-        height: $height-size_2 + 1;
+        height: $height-size_2 + 5;
         border-radius: 50% 50% 0 0;
         background-color: $color_2;
 
@@ -19,7 +19,7 @@
 
     .head {
         font-size: 1.5rem;
-        margin-bottom: 20px;
+        margin: 15px 0px;
         position: relative;
         z-index: 10;
     }

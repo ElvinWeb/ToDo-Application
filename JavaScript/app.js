@@ -14,7 +14,8 @@ const wrapper = document.querySelector(".wrapper"),
   totalCategoryTasks = document.querySelector(".category-tasks"),
   categoryImg = document.getElementById("category-img"),
   totalTasks = document.querySelector(".totalTasks"),
-  tasksContainer = document.querySelector(".tasks");
+  tasksContainer = document.querySelector(".tasks"),
+  errorMsg = document.querySelector(".error-message");
 
 //categories and tasks array for adding the into the category and task list
 let categories = [
@@ -228,30 +229,38 @@ const calculateTotal = () => {
 
   totalTasks.textContent = tasks.length;
 };
-const addTask = (e) => {
-  e.preventDefault();
-
-  const task = taskInput.value;
+//add the task to the task list
+const addTask = (task) => {
   const category = categorySelect.value;
+  const newTask = {
+    id: tasks.length + 1,
+    task,
+    category,
+    completed: false,
+  };
 
-  
-  if (task === " ") {
-    alert("Please enter the task");
+  taskInput.value = " ";
+  tasks.push(newTask);
+  saveLocal();
+  toggleAddTaskForm();
+  renderTasks();
+};
+//validation for task
+const validateTask = (taskVal) => {
+  let valid = false;
+
+  if (taskVal.length == " ") {
+    errorMsg.innerHTML = "task required";
+    taskInput.classList.add("error-border");
+    valid = false;
+
   } else {
-    const newTask = {
-      id: tasks.length + 1,
-      task,
-      category,
-      completed: false,
-    };
-
-    taskInput.value = " ";
-    tasks.push(newTask);
-    saveLocal();
-    toggleAddTaskForm();
-    renderTasks();
-    taskInput.classList.remove("error");
+    errorMsg.innerHTML = "";
+    taskInput.classList.remove("error-border");
+    valid = true;
   }
+
+  return valid;
 };
 //rendering the category cards
 const renderCategories = () => {
@@ -433,7 +442,14 @@ addTaskBtn.addEventListener("click", toggleAddTaskForm);
 blackBackDrop.addEventListener("click", toggleAddTaskForm);
 backBtn.addEventListener("click", toggleScreen);
 menuBtn.addEventListener("click", toggleScreen);
-addBtn.addEventListener("click", addTask);
+addBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const taskVal = taskInput.value.trim();
+
+  if (validateTask(taskVal)) {
+    addTask(taskVal);
+  }
+});
 getLocal();
 renderTasks();
 

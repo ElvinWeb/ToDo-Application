@@ -67,7 +67,7 @@ body {
   bottom: -100%;
   left: 0;
   width: 100%;
-  padding: 50px 30px;
+  padding: 40px 30px;
   transition: all 0.3s;
 }
 .add-task .add-task-backdrop {
@@ -76,7 +76,7 @@ body {
   left: 50%;
   transform: translate(-50%);
   width: 135%;
-  height: 21rem;
+  height: 25rem;
   border-radius: 50% 50% 0 0;
   background-color: #fff;
 }
@@ -85,36 +85,9 @@ body {
 }
 .add-task .head {
   font-size: 1.5rem;
-  margin-bottom: 20px;
+  margin: 15px 0px;
   position: relative;
   z-index: 10;
-}
-
-.add-task-btn {
-  position: absolute;
-  width: 3rem;
-  height: 3rem;
-  bottom: 1rem;
-  right: 1rem;
-  border-radius: 50%;
-  background-color: #b92b27;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-}
-.add-task-btn:hover {
-  transform: scale(1.1);
-}
-.add-task-btn svg {
-  width: 2.3rem;
-  color: #fff;
-}
-.add-task-btn.active {
-  transform: rotate(45deg);
-  bottom: 20rem;
-  z-index: 1;
 }
 
 .category-screen .head-top {
@@ -412,6 +385,33 @@ body {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.add-task-btn {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  bottom: 1rem;
+  right: 1rem;
+  border-radius: 50%;
+  background-color: #b92b27;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.add-task-btn:hover {
+  transform: scale(1.1);
+}
+.add-task-btn svg {
+  width: 2.3rem;
+  color: #fff;
+}
+.add-task-btn.active {
+  transform: rotate(45deg);
+  bottom: 20rem;
+  z-index: 1;
+}
+
 .task-wrapper:hover .delete-btn {
   opacity: 1;
   visibility: visible;
@@ -443,4 +443,14 @@ body {
 .task-check:checked ~ p {
   text-decoration: line-through;
   opacity: 0.6;
-}/*# sourceMappingURL=main.css.map */
+}
+
+.error-message {
+  color: #b92b27;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.error-border {
+  border: 1px solid #b92b27 !important;
+}

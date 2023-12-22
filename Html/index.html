@@ -192,21 +192,23 @@
         <div class="add-task">
           <div class="add-task-backdrop"></div>
           <h1 class="head">Add Task</h1>
-          <div class="input-group">
-            <label for="task-input">Task</label>
-            <input type="text" id="task-input" class="todo-input" />
-            <span class="error-message"></span>
-          </div>
-          <div class="input-group">
-            <label for="category-select">Category</label>
-            <select type="text" id="category-select" class="todo-category">
-              <option value="personal">Personal</option>
-            </select>
-          </div>
-          <div class="btns">
-            <button class="cancel-btn">Cancel</button>
-            <button class="add-btn">Add</button>
-          </div>
+          <form id="add-task-form" class="form">
+            <div class="input-group">
+              <label for="task-input">Task</label>
+              <input type="text" id="task-input" class="todo-input" />
+              <span class="error-message"></span>
+            </div>
+            <div class="input-group">
+              <label for="category-select">Category</label>
+              <select type="text" id="category-select" class="todo-category">
+                <option value="personal">Personal</option>
+              </select>
+            </div>
+            <div class="btns">
+              <button class="cancel-btn">Cancel</button>
+              <button class="add-btn" type="submit">Add</button>
+            </div>
+          </form>
         </div>
       </div>
     </main>

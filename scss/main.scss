@@ -3,12 +3,12 @@
 @import "../scss/layout/_layout-dir";
 @import "../scss/components/_components-dir";
 
-.error-message {
+.input-group .error-message {
     color: $color_6;
     font-size: 12px;
     font-weight: 600;
 }
 
-.error-border {
-    border: 1px solid $color_6 !important;
+.input-group.error-border input {
+    border: 1px solid $color_6;
 }

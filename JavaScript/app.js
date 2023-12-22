@@ -15,7 +15,8 @@ const wrapper = document.querySelector(".wrapper"),
   categoryImg = document.getElementById("category-img"),
   totalTasks = document.querySelector(".totalTasks"),
   tasksContainer = document.querySelector(".tasks"),
-  errorMsg = document.querySelector(".error-message");
+  errorMsg = document.querySelector(".error-message"),
+  taskForm = document.getElementById("add-task-form");
 
 //categories and tasks array for adding the into the category and task list
 let categories = [
@@ -230,8 +231,9 @@ const calculateTotal = () => {
   totalTasks.textContent = tasks.length;
 };
 //add the task to the task list
-const addTask = (task) => {
+const addTask = () => {
   const category = categorySelect.value;
+  const task = taskInput.value.trim();
   const newTask = {
     id: tasks.length + 1,
     task,
@@ -246,22 +248,21 @@ const addTask = (task) => {
   renderTasks();
 };
 //validation for task
-const validateTask = (taskVal) => {
-  let valid = false;
+// const validateTask = (taskVal) => {
+//   let valid = false;
 
-  if (taskVal.length == " ") {
-    errorMsg.innerHTML = "task required";
-    taskInput.classList.add("error-border");
-    valid = false;
-
-  } else {
-    errorMsg.innerHTML = "";
-    taskInput.classList.remove("error-border");
-    valid = true;
-  }
-
-  return valid;
-};
+//   if (taskVal.length == " ") {
+//     errorMsg.innerHTML = "task required";
+//     taskInput.classList.add("error-border");
+//     valid = false;
+//   } else {
+//     errorMsg.innerHTML = "";
+//     taskInput.classList.remove("error-border");
+//     valid = true;
+//   }
+//   console.log(valid);
+//   return valid;
+// };
 //rendering the category cards
 const renderCategories = () => {
   categoriesContainer.innerHTML = "";
@@ -270,11 +271,14 @@ const renderCategories = () => {
     const categoryTasks = tasks.filter(
       (task) => task.category.toLowerCase() == category.title.toLowerCase()
     );
-    createCategoryCard(category, categoryTasks);
+    const completedTasks = categoryTasks.filter(
+      (task) => task.completed == true
+    );
+    createCategoryCard(category, categoryTasks, completedTasks);
   });
 };
 // creating the category cards
-const createCategoryCard = (category, categoryTasks) => {
+const createCategoryCard = (category, categoryTasks, completedTasks) => {
   const div = document.createElement("div");
   div.classList.add("category");
   div.addEventListener("click", () => {
@@ -312,6 +316,7 @@ const createCategoryCard = (category, categoryTasks) => {
     </div>
   </div>
   `;
+
   categoriesContainer.appendChild(div);
 };
 // creating the categories tasks
@@ -435,21 +440,50 @@ const saveLocal = () => {
 const getLocal = () => {
   const localTasks = JSON.parse(localStorage.getItem("tasks"));
 };
+const setError = (element, message) => {
+  errorMsg.textContent = message;
+  element.classList.add("error-border");
+};
+const setSuccess = (element) => {
+  errorMsg.textContent = "";
+  element.classList.remove("error-border");
+};
+const validateInput = () => {
+  const taskVal = taskInput.value.trim();
 
-//Event handlers
-cancelBtn.addEventListener("click", toggleAddTaskForm);
+  if (taskVal.length === 0) {
+    setError(taskInput, "task is required");
+  } else {
+    setSuccess(taskInput);
+  }
+};
+const isFormValid = () => {
+  const inputContainer = taskForm.querySelector(".todo-input");
+  let valid = true;
+  if (inputContainer.classList.contains("error-border")) {
+    valid = false;
+  }
+  return valid;
+};
+// Event handlers
+addBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  validateInput();
+
+  if (isFormValid() == true) {
+    addTask();
+  }
+});
+cancelBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  setSuccess(taskInput);
+  toggleAddTaskForm();
+});
 addTaskBtn.addEventListener("click", toggleAddTaskForm);
 blackBackDrop.addEventListener("click", toggleAddTaskForm);
 backBtn.addEventListener("click", toggleScreen);
 menuBtn.addEventListener("click", toggleScreen);
-addBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  const taskVal = taskInput.value.trim();
-
-  if (validateTask(taskVal)) {
-    addTask(taskVal);
-  }
-});
 getLocal();
 renderTasks();
 

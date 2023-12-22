@@ -20,7 +20,3 @@ body {
     color: $color_1;
     @include flex-box(center, center);
 }
-
-.error {
-    border: 1px solid $color_3 !important;
-}

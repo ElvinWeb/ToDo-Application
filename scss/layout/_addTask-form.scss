@@ -7,7 +7,7 @@
     .add-task-backdrop {
         @include position-absolute(50%);
         width: $width-size_1 + 35;
-        height: $height-size_2 + 5;
+        height: $height-size_2 + 10;
         border-radius: 50% 50% 0 0;
         background-color: $color_2;
 

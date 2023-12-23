@@ -5,9 +5,7 @@
 }
 
 @mixin flex-direction($justify, $align, $flex-direction, $direction) {
-    display: flex;
-    align-items: $align;
-    justify-content: $justify;
+    @include flex-box($align, $justify);
     #{$flex-direction}: $direction;
 }
 

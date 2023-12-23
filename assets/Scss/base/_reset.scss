@@ -5,18 +5,36 @@
     margin: 0px;
     box-sizing: border-box;
     list-style: none;
-    outline: none;
-    text-decoration: none;
+    font-family: $font-family_1;
 }
 
 ::-webkit-scrollbar {
     width: 0;
 }
 
+button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+}
+
+input {
+    outline: none;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
 body {
     min-height: $height-size_1;
     background-color: $color_5;
-    font-family: $font-family_1;
     color: $color_1;
     @include flex-box(center, center);
 }

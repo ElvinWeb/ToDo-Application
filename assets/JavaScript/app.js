@@ -16,7 +16,8 @@ const wrapper = document.querySelector(".wrapper"),
   totalTasks = document.querySelector(".totalTasks"),
   tasksContainer = document.querySelector(".tasks"),
   errorMsg = document.querySelector(".error-message"),
-  taskForm = document.getElementById("add-task-form");
+  taskForm = document.getElementById("add-task-form"),
+  doneTaskCounter = document.querySelector(".task-done");
 
 //categories and tasks array for adding the into the category and task list
 let categories = [
@@ -247,22 +248,6 @@ const addTask = () => {
   toggleAddTaskForm();
   renderTasks();
 };
-//validation for task
-// const validateTask = (taskVal) => {
-//   let valid = false;
-
-//   if (taskVal.length == " ") {
-//     errorMsg.innerHTML = "task required";
-//     taskInput.classList.add("error-border");
-//     valid = false;
-//   } else {
-//     errorMsg.innerHTML = "";
-//     taskInput.classList.remove("error-border");
-//     valid = true;
-//   }
-//   console.log(valid);
-//   return valid;
-// };
 //rendering the category cards
 const renderCategories = () => {
   categoriesContainer.innerHTML = "";
@@ -271,27 +256,24 @@ const renderCategories = () => {
     const categoryTasks = tasks.filter(
       (task) => task.category.toLowerCase() == category.title.toLowerCase()
     );
-    const completedTasks = categoryTasks.filter(
-      (task) => task.completed == true
-    );
-    createCategoryCard(category, categoryTasks, completedTasks);
+    createCategoryCard(category, categoryTasks);
   });
 };
 // creating the category cards
-const createCategoryCard = (category, categoryTasks, completedTasks) => {
+const createCategoryCard = (category, categoryTasks) => {
   const div = document.createElement("div");
   div.classList.add("category");
   div.addEventListener("click", () => {
     wrapper.classList.add("show-category");
     selectedCategory = category;
-    categoryImg.src = `../Images/${category.img}`;
+    categoryImg.src = `./assets/Images/${category.img}`;
     categoryTitle.textContent = category.title;
     calculateTotal();
     renderTasks();
   });
   div.innerHTML = ` 
   <div class="left">
-    <img src="../Images/${category.img}" alt=${category.title} class="category-img"/>
+    <img src="./assets/Images/${category.img}" alt=${category.title} class="category-img"/>
     <div class="content">
       <h1>${category.title}</h1>
       <p>${categoryTasks.length} Tasks</p>
@@ -320,17 +302,21 @@ const createCategoryCard = (category, categoryTasks, completedTasks) => {
   categoriesContainer.appendChild(div);
 };
 // creating the categories tasks
-const createCategoryTask = (task, allTask) => {
+const createCategoryTask = (task, allTask, categoryTasks) => {
   const div = document.createElement("div");
-  div.classList.add("task-wrapper");
   const label = document.createElement("label");
-  label.classList.add("task");
-  label.setAttribute("for", task.id);
   const checkBox = document.createElement("input");
+  div.classList.add("task-wrapper");
+  label.classList.add("task");
   checkBox.classList.add("task-check");
+  label.setAttribute("for", task.id);
   checkBox.type = "checkbox";
   checkBox.id = task.id;
   checkBox.checked = task.completed;
+  const completedTasks = categoryTasks.filter(
+    (task) => task.completed === true
+  );
+  doneTaskCounter.textContent = `${completedTasks.length} task is done`;
 
   checkBox.addEventListener("change", () => {
     const index = allTask.findIndex((wantedTask) => wantedTask.id === task.id);
@@ -371,7 +357,6 @@ const createCategoryTask = (task, allTask) => {
       </svg>
   </div>
   `;
-
   label.innerHTML = `
     <span class="checkmark">
       <svg
@@ -405,7 +390,6 @@ const renderTasks = () => {
     (task) =>
       task.category.toLowerCase() == selectedCategory.title.toLowerCase()
   );
-
   totalCategoryTasks.textContent = `${categoryTasks.length} Tasks`;
   totalTasks.textContent = tasks.length;
 
@@ -413,7 +397,7 @@ const renderTasks = () => {
     tasksContainer.innerHTML = ` <p class="no-task">No tasks for this category</p>  `;
   } else {
     categoryTasks.forEach((task) => {
-      createCategoryTask(task, tasks);
+      createCategoryTask(task, tasks, categoryTasks);
     });
     renderCategories();
   }
@@ -440,23 +424,27 @@ const saveLocal = () => {
 const getLocal = () => {
   const localTasks = JSON.parse(localStorage.getItem("tasks"));
 };
+//adding the error message to the input
 const setError = (element, message) => {
   errorMsg.textContent = message;
   element.classList.add("error-border");
 };
+//removing the error message when task is added
 const setSuccess = (element) => {
   errorMsg.textContent = "";
   element.classList.remove("error-border");
 };
+//validation of input
 const validateInput = () => {
   const taskVal = taskInput.value.trim();
 
-  if (taskVal.length === 0) {
+  if (taskVal.length === 0 || taskVal === null) {
     setError(taskInput, "task is required");
   } else {
     setSuccess(taskInput);
   }
 };
+//check for form is valid or not
 const isFormValid = () => {
   const inputContainer = taskForm.querySelector(".todo-input");
   let valid = true;

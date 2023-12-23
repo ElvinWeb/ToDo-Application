@@ -16,18 +16,36 @@
   margin: 0px;
   box-sizing: border-box;
   list-style: none;
-  outline: none;
-  text-decoration: none;
+  font-family: "Inter", sans-serif;
 }
 
 ::-webkit-scrollbar {
   width: 0;
 }
 
+button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+input {
+  outline: none;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
 body {
   min-height: 100vh;
   background-color: hsl(0, 0%, 96%);
-  font-family: "Inter", sans-serif;
   color: #2e2e2e;
   display: flex;
   align-items: center;
@@ -41,13 +59,14 @@ body {
   height: 100vh;
   width: 100%;
   padding: 30px 0;
+  margin: 20px 0;
 }
 @media only screen and (min-width: 567px) {
   .wrapper {
-    height: 50rem;
-    width: 25rem;
+    height: 41rem;
+    width: 24rem;
     border-radius: 35px;
-    border: 10px solid #2e2e2e;
+    border: 8px solid #2e2e2e;
   }
 }
 .wrapper.show-category .home-screen,
@@ -84,72 +103,6 @@ body {
   margin: 15px 0px;
   position: relative;
   z-index: 10;
-}
-
-.category-screen .head-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.category-screen .head-top .back-btn {
-  cursor: pointer;
-  width: 2rem;
-  color: #fff;
-}
-.category-screen .head-top .top-logo {
-  width: 35px;
-  height: 35px;
-}
-.category-screen .head-top .top-logo img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-.category-screen .category-details {
-  padding: 0 30px;
-  margin-top: 8rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.category-screen .category-details img {
-  width: 4rem;
-}
-.category-screen .category-details .details p {
-  opacity: 0.6;
-}
-
-.backdrop-screen {
-  width: 135%;
-  height: 25rem;
-  background: #1565c0;
-  border-radius: 0 0 50% 50%;
-  background: linear-gradient(to right, #b92b27, #1565c0);
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%);
-  z-index: -1;
-  transition: all 0.3s;
-}
-
-.black-backdrop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translate(0);
-  opacity: 0;
-  visibility: hidden;
-  width: 100%;
-  height: 100%;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  background-color: rgba(0, 0, 0, 0.137254902);
-}
-.black-backdrop.active {
-  opacity: 1;
-  visibility: visible;
 }
 
 .screen {
@@ -215,6 +168,40 @@ body {
   z-index: -1;
 }
 
+.category-screen .head-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.category-screen .head-top .back-btn {
+  cursor: pointer;
+  width: 2rem;
+  color: #fff;
+}
+.category-screen .head-top .top-logo {
+  width: 35px;
+  height: 35px;
+}
+.category-screen .head-top .top-logo img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.category-screen .category-details {
+  padding: 0 30px;
+  margin-top: 8rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.category-screen .category-details img {
+  width: 4rem;
+}
+.category-screen .category-details .details p {
+  opacity: 0.6;
+}
+
 .category {
   background-color: #fff;
   border-radius: 0.5rem;
@@ -278,6 +265,38 @@ body {
   gap: 1rem;
 }
 
+.backdrop-screen {
+  width: 135%;
+  height: 25rem;
+  background: #1565c0;
+  border-radius: 0 0 50% 50%;
+  background: linear-gradient(to right, #b92b27, #1565c0);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: -1;
+  transition: all 0.3s;
+}
+
+.black-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0);
+  opacity: 0;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.137254902);
+}
+.black-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
 .task-wrapper {
   display: flex;
   align-items: center;
@@ -316,6 +335,7 @@ body {
 }
 
 .tasks-wrapper {
+  position: relative;
   padding: 0 30px;
   margin-top: 1rem;
   height: calc(100% - 12rem);
@@ -325,7 +345,7 @@ body {
 .tasks-wrapper .tasks {
   padding-top: 1rem;
   display: flex;
-  align-items: 0;
+  align-items: initial;
   justify-content: center;
   flex-direction: column;
   gap: 1rem;
@@ -338,6 +358,11 @@ body {
   text-align: center;
   font-size: 1.5rem;
   opacity: 0.6;
+}
+.tasks-wrapper .completed-tasks {
+  position: absolute;
+  left: 35px;
+  bottom: 55px;
 }
 
 .btns {
@@ -447,6 +472,6 @@ body {
   font-weight: 600;
 }
 
-.input-group.error-border input {
+.input-group .error-border {
   border: 1px solid #b92b27;
 }

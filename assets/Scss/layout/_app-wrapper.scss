@@ -1,29 +1,41 @@
-.wrapper {
-    position: relative;
-    display: flex;
-    overflow: hidden;
-    height: $height-size_1;
-    width: $width-size_1;
-    padding: 30px 0;
-    margin: 20px 0;
+.app-main {
+    @include flex-box(center, center);
+    flex-wrap: wrap;
 
-    @media only screen and (min-width: 567px) {
-        height: 41rem;
-        width: 24rem;
-        border-radius: 35px;
-        border: 8px solid $color_1;
+    @include x-sm {
+        width: 92%;
     }
 
-    &.show-category {
+    @include mobile {
+        
+    }
 
-        .home-screen,
-        .category-screen {
-            transform: translateX(-100%);
+    .wrapper {
+        position: relative;
+        display: flex;
+        overflow: hidden;
+        padding: 30px 0;
+        margin: 20px 0;
+        border: 7px solid $color_1;
+        max-width: 23rem;
+        width: 100%;
+        height: 43rem;
+
+        border-radius: 35px;
+
+
+
+        &.show-category {
+
+            .home-screen,
+            .category-screen {
+                transform: translateX(-100%);
+            }
+
+            .backdrop-screen {
+                transform: translate(-50%, -60%);
+            }
+
         }
-
-        .backdrop-screen {
-            transform: translate(-50%, -60%);
-        }
-
     }
 }

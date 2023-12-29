@@ -4,8 +4,7 @@
     .category-details {
         padding: 0 30px;
         margin-top: 8rem;
-        display: flex;
-        align-items: center;
+        @include flex-box(center, null);
         gap: 1rem;
 
         img {

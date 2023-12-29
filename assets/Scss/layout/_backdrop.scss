@@ -4,7 +4,8 @@
     background: $color_7;
     border-radius: 0 0 50% 50%;
     background: linear-gradient(to right, $color_6, $color_7);
-    @include position-absolute(50%);
+    @include position(absolute, null, 0, 50%, null);
+    transform: translate(-50%);
     z-index: -1;
     transition: all 0.3s;
 }

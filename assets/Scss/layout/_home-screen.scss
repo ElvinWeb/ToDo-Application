@@ -17,12 +17,20 @@
 
             &-head {
                 font-size: 1.5rem;
+
+                @include mobile {
+                    font-size: 1.2rem;
+                }
             }
 
             &-text {
                 font-weight: 500;
                 line-height: 20px;
                 margin-top: 5px;
+
+                @include mobile {
+                    width: 90%;
+                }
             }
         }
 
@@ -31,15 +39,25 @@
 
             img {
                 width: $width-size_2;
+
+                @include mobile {
+                    width: 4rem;
+                }
             }
 
             .backdrop {
-                @include position-absolute(50%);
+                @include position(absolute, null, 0, 50%, null);
+                transform: translate(-50%);
                 width: $width-size_2 - 1.2;
                 height: $height-size_2 - 16;
                 border-radius: 50%;
                 background-color: $color_2;
                 z-index: -1;
+
+                @include mobile {
+                    width: 3rem;
+                    height: 3rem;
+                }
             }
         }
     }

@@ -1,25 +1,37 @@
 @mixin flex-box($align, $justify) {
     display: flex;
-    align-items: $align;
-    justify-content: $justify;
+
+    @if $justify==null {
+        align-items: $align;
+    }
+    @else {
+        align-items: $align;
+        justify-content: $justify;
+    }
 }
 
-@mixin flex-direction($justify, $align, $flex-direction, $direction) {
+@mixin flex-direction($justify, $align, $direction) {
     @include flex-box($align, $justify);
-    #{$flex-direction}: $direction;
+    flex-direction: $direction;
 }
 
-@mixin position-absolute($left) {
-    position: absolute;
-    top: 0;
-    left: $left;
-    transform: translate(-$left);
-}
+@mixin position($position, $bottom, $top, $left, $right) {
+    position: $position;
 
-@mixin position-absolute_1($bottom) {
-    position: absolute;
-    bottom: $bottom;
-    left: 0;
+    @if $right==null and $top==null {
+        bottom: $bottom;
+        left: $left;
+    }
+
+    @if $bottom==null and $right==null {
+        top: $top;
+        left: $left;
+    }
+
+    @if $bottom==null and $left==null {
+        top: $top;
+        right: $right;
+    }
 }
 
 @mixin hidden($visible, $opacity) {
@@ -52,5 +64,17 @@
             }
         }
 
+    }
+}
+
+@mixin x-sm {
+    @media only screen and (max-width: 390px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media only screen and (max-width: 286px) {
+        @content;
     }
 }

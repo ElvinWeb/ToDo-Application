@@ -1,11 +1,12 @@
 .add-task {
-    @include position-absolute_1(-100%);
+    @include position(absolute, -100%, null, 0, null);
     width: $width-size_1;
     padding: 40px 30px;
     transition: all 0.3s;
 
     .add-task-backdrop {
-        @include position-absolute(50%);
+        @include position(absolute, null, 0, 50%, null);
+        transform: translate(-50%);
         width: $width-size_1 + 35;
         height: $height-size_2 + 10;
         border-radius: 50% 50% 0 0;

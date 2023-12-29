@@ -8,7 +8,7 @@
 
     .tasks {
         padding-top: 1rem;
-        @include flex-direction(center, initial, flex-direction, column);
+        @include flex-direction(center, initial, column);
         gap: 1rem;
 
         .no-task {
@@ -22,9 +22,7 @@
     }
 
     .completed-tasks {
-        position: absolute;
-        left: 35px;
-        bottom: 55px;
+        @include position(absolute, 55px, null, 35px, null)
     }
 
 

@@ -468,8 +468,12 @@ cancelBtn.addEventListener("click", (e) => {
   setSuccess(taskInput);
   toggleAddTaskForm();
 });
-addTaskBtn.addEventListener("click", toggleAddTaskForm);
-blackBackDrop.addEventListener("click", toggleAddTaskForm);
+addTaskBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  setSuccess(taskInput);
+  toggleAddTaskForm();
+});
 backBtn.addEventListener("click", toggleScreen);
 menuBtn.addEventListener("click", toggleScreen);
 getLocal();

@@ -145,6 +145,14 @@ body {
   justify-content: space-between;
   margin-top: 30px;
 }
+@media only screen and (max-width: 286px) {
+  .screen .head-wrapper .welcome {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+  }
+}
 .screen .head-wrapper .content {
   color: #fff;
 }
@@ -163,7 +171,12 @@ body {
 }
 @media only screen and (max-width: 286px) {
   .screen .head-wrapper .content-text {
-    width: 90%;
+    width: 190px;
+  }
+}
+@media only screen and (max-width: 286px) {
+  .screen .head-wrapper .content {
+    margin-top: 10px;
   }
 }
 .screen .head-wrapper .user-img {
@@ -222,11 +235,26 @@ body {
   align-items: center;
   gap: 1rem;
 }
+@media only screen and (max-width: 286px) {
+  .category-screen .category-details {
+    margin-top: 6.5rem;
+  }
+}
 .category-screen .category-details img {
   width: 4rem;
 }
+@media only screen and (max-width: 286px) {
+  .category-screen .category-details img {
+    width: 3rem;
+  }
+}
 .category-screen .category-details .details p {
   opacity: 0.6;
+}
+@media only screen and (max-width: 286px) {
+  .category-screen .category-details .details h1 {
+    font-size: 25px;
+  }
 }
 
 .category {
@@ -264,7 +292,7 @@ body {
 }
 @media only screen and (max-width: 286px) {
   .category .left .category-img {
-    width: 1.6rem;
+    width: 2rem;
   }
 }
 .category .options {
@@ -294,7 +322,7 @@ body {
 }
 @media only screen and (max-width: 286px) {
   .categories-wrapper {
-    padding: 0 30px 40px 30px;
+    padding: 0 30px 50px 30px;
   }
 }
 .categories-wrapper .categories {
@@ -318,6 +346,11 @@ body {
   transform: translate(-50%);
   z-index: -1;
   transition: all 0.3s;
+}
+@media only screen and (max-width: 286px) {
+  .backdrop-screen {
+    height: 20rem;
+  }
 }
 
 .black-backdrop {
@@ -405,12 +438,24 @@ body {
   bottom: 55px;
   left: 35px;
 }
+@media only screen and (max-width: 286px) {
+  .tasks-wrapper .completed-tasks {
+    position: absolute;
+    bottom: 15px;
+    left: 35px;
+  }
+}
 
 .btns {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 1rem;
+}
+@media only screen and (max-width: 286px) {
+  .btns {
+    justify-content: center;
+  }
 }
 .btns button {
   padding: 10px 20px;
@@ -441,6 +486,11 @@ body {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s;
+}
+@media only screen and (max-width: 286px) {
+  .delete-btn {
+    margin-left: 20px;
+  }
 }
 .delete-btn:hover {
   color: #c51605;

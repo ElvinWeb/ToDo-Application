@@ -3,8 +3,9 @@
     height: calc(100% - 8rem);
     padding: 0 30px 20px 30px;
     overflow: scroll;
-    @include mobile{
-        padding: 0 30px 40px 30px;
+
+    @include mobile {
+        padding: 0 30px 50px 30px;
     }
 
     .categories {

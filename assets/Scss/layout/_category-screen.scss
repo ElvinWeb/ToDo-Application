@@ -7,14 +7,29 @@
         @include flex-box(center, null);
         gap: 1rem;
 
+        @include mobile {
+            margin-top: 6.5rem;
+        }
+
         img {
             width: $width-size_2 - 1;
+
+            @include mobile {
+                width: $width-size_2 - 2;
+            }
+
         }
 
         .details p {
 
             opacity: 0.6;
 
+        }
+
+        .details h1 {
+            @include mobile {
+                font-size: 25px;
+            }
         }
     }
 }

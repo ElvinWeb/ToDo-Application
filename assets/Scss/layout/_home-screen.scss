@@ -10,6 +10,10 @@
         .welcome {
             @include flex-box(center, space-between);
             margin-top: 30px;
+
+            @include mobile {
+                @include flex-direction(space-between, flex-start, column-reverse)
+            }
         }
 
         .content {
@@ -29,8 +33,12 @@
                 margin-top: 5px;
 
                 @include mobile {
-                    width: 90%;
+                    width: 190px;
                 }
+            }
+
+            @include mobile {
+                margin-top: 10px;
             }
         }
 

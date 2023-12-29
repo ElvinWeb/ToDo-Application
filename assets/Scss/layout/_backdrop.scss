@@ -8,4 +8,8 @@
     transform: translate(-50%);
     z-index: -1;
     transition: all 0.3s;
+
+    @include mobile {
+        height: $height-size_2;
+    }
 }

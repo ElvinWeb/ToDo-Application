@@ -22,7 +22,12 @@
     }
 
     .completed-tasks {
-        @include position(absolute, 55px, null, 35px, null)
+        @include position(absolute, 55px, null, 35px, null);
+
+        @include mobile {
+
+            @include position(absolute, 15px, null, 35px, null)
+        }
     }
 
 

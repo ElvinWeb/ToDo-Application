@@ -2,13 +2,13 @@
     @include flex-box(center, center);
     flex-wrap: wrap;
 
+    // @include hidden(hidden, 0);
+
     @include x-sm {
         width: 92%;
     }
 
-    @include mobile {
-        
-    }
+    @include mobile {}
 
     .wrapper {
         position: relative;
